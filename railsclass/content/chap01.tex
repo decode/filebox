@@ -1,0 +1,46 @@
+
+\chapter{rails迁移到subversion}
+
+\section{在Linux下的迁移方法}
+在命令行下输入：
+\$ svnadmin create /path/to/repository
+
+创建文件夹
+\$ svn mkdir --message="Creating my project's repository ..."
+file:///path/to/repository/trunk file:///path/to/repository/tags
+file:///path/to/repository/branches
+
+回到源代码所在目录
+\$ cd /path/to/source/code
+
+将代码导入subversion中
+\$ svn import -m "initial import" . \
+> file:///path/to/repository/trunk
+
+现在可以进行如下操作
+\$ mv code code.old
+目的是把原有代码转移到其他目录，不要与原来的目录名字相同，在接下来的操
+作中会发生冲突。如果对subversion完全放心的话，可以输入下面的命令：
+\$ rm -rf code
+
+把版本控制系统的代码导出来。
+\$ svn checkout file:///path/to/repository/code/trunk code
+
+现在进入刚导出的源代码文件夹
+\$ cd code
+
+忽略所有log和tmp文件夹下面的文件
+\$ svn remove log/*
+\$ svn commit -m 'removing all log files from subversion'
+\$ svn propset svn:ignore "*.log" log/
+\$ svn update log/
+\$ svn commit -m 'Ignoring all files in /log/ ending in .log'
+\$ svn remove tmp/*
+\$ svn commit -m 'removing all tmp artifacts from subversion'
+\$ svn propset svn:ignore "*" tmp/
+\$ svn update tmp/
+\$ svn commit -m "ignore tmp/ content from now on" 
+
+
+
+

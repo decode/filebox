@@ -1,0 +1,37 @@
+
+\chapter{rails cucumber应用}
+
+\section{安装准备}
+如果使用mysql，需要安装ruby mysql
+\$ sudo gem install mysql
+在命令行下输入：
+\$ sudo gem install cucumber rspec rspec-rails webrat
+
+\section{基本使用}
+\$ rails project
+\$ cd project
+\$ script/generate cucumber
+\$ rake db:migrate
+\$ rake features
+
+\section{具体实例}
+\$ script/generate rspec_scaffold message title:string body:text follow_id:integer 
+\$ script/generate feature  message title:string body:text follow_id:integer 
+
+\section{点滴}
+Then /^I should see the following messages:\$/ do |messages|
+  messages.raw[1..-1].each_with_index do |row, i|
+    row.each_with_index do |cell, j|
+      response.should have_selector("table > tr:nth-child(#{i+2}) > td:nth-child(#{j+1})") { |td|
+        td.inner_text.chomp.strip.should == cell
+      }
+    end
+  end
+end
+
+have_selector:Matches HTML content against a CSS 3 selector. 
+CSS selector含义参考http://www.w3.org/TR/css3-selectors/
+have_selector中字符串含义:
+Pattern  	Meaning  				Described in section  	First defined in CSS level
+E > F  		an F element child of an E element  	Child combinator  	2
+
