@@ -1,0 +1,3 @@
+;; -*- mode: emacs-lisp -*-
+;; History entries used for anything adaptive display.
+(setq anything-c-adaptive-history (quote (("Info Pages" ("rindex: (libc)Search Functions" (#("index" 0 1 (auto-composed t) 1 2 (auto-composed t) 2 3 (auto-composed t) 3 4 (auto-composed t)) . 1))) ("Ruby Method Completion" ("chr	[Integer#chr]" ("" . 1))))))
