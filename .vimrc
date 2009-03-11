@@ -1,15 +1,62 @@
 colorscheme torte
+set fileencodings=ucs-bom,utf8,GB18030,Big5,latin1
 set nocompatible
 set number
 set background=dark
 set encoding=utf-8
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 syntax on
 filetype plugin indent on
 set guioptions-=T
+set guioptions-=r
+set guioptions-=l
+
+" Map shortcut key
+let mapleader=","
+let g:mapleader=","
+
+" Toggle NERNTree
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 " Buftab
 :let g:buftabs_in_statusline=1
 :let g:buftabs_only_basename=1
+
+nmap <C-x><C-b> :BufExplorer<cr>
+nmap <C-x><C-s> :w!<cr>
+nmap <C-x><C-f> :e /home/home 
+map <C-x><C-s> <esc>:w!<cr>
+nmap <C-x><C-z> :q<cr>
+imap <C-x><C-z> <esc>:q<cr>
+imap <C-g> <esc>
+vmap <C-g> <esc>
+omap <C-g> <esc>
+
+imap <C-a> <Home>
+vmap <C-a> <Home>
+omap <C-a> <Home>
+imap <C-e> <End>
+vmap <C-e> <End>
+omap <C-e> <End>
+
+imap <C-b> <Left>
+vmap <C-b> <Left>
+omap <C-b> <Left>
+imap <C-f> <Right>
+vmap <C-f> <Right>
+omap <C-f> <Right>
+imap <C-p> <Up>
+vmap <C-p> <Up>
+omap <C-p> <Up>
+imap <C-n> <Down>
+vmap <C-n> <Down>
+omap <C-n> <Down>
+
+" For rails ctag use
+autocmd BufEnter *
+	\ if exists("b:rails_root") |
+        \   let g:base_dir = b:rails_root |
+        \ endif |
 
 " ruby omni completion
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -18,7 +65,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 " External auto-indenting
-nmap <leader>rci :%!ruby-code-indenter<cr> 
+nmap <leader>z :%!ruby-code-indenter<cr> 
 
 " Add recently accessed projects menu (project plugin)
 set viminfo^=!
