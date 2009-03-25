@@ -1,3 +1,7 @@
+set nextpattern=\s*下一页|下一张|下页\s*,\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$
+set previouspattern=\s*上一页|上一张|上页\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$ 
+
+command google tabopen google <args>
 javascript <<EOF
 (function(){
     var feedPanel = document.createElement("statusbarpanel");
@@ -8,7 +12,4 @@ javascript <<EOF
             .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
-
-set nextpattern=\s*下一页|下一张|下页\s*,\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b
-set previouspattern=\s*上一页|上一张|上页\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$ 
 
