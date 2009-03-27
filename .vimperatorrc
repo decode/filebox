@@ -16,11 +16,16 @@ ubiquity = function (str){
     mgr.execute(ctx);
 }
 EOF
+# Toggle toolbars by shortcuts
 js << EOF
     toggle_element = function (name) {
         document.getElementById(name).collapsed ^= 1;
     }
 EOF
+# map <silent> <C-T> :js toggle_element('toolbar-id')<CR>
+
+# Open Brief in new tab
+#map <silent> <C-M> :js gBrief.open(Tabs)<CR>
 
 set nextpattern=\s*下一页|下一张|下页\s*,\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$
 set previouspattern=\s*上一页|上一张|上页\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$ 
