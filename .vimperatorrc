@@ -8,12 +8,20 @@ javascript <<EOF
             .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
+js <<EOF
+ubiquity = function (str){ 
+    var mgr = gUbiquity.__cmdManager;
+    var ctx = {focusedWindow: null, focusedElement: null};
+    mgr.updateInput(str, ctx);
+    mgr.execute(ctx);
+}
+EOF
 
 set nextpattern=\s*下一页|下一张|下页\s*,\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$
 set previouspattern=\s*上一页|上一张|上页\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$ 
 
 # Use awesome bar
-set complete=l
-set wildoptions=auto
+#set complete=l
+#set wildoptions=auto
 
 
