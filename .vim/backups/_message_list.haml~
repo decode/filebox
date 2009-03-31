@@ -1,0 +1,24 @@
+%table
+  - for msg in @user.unread_messages
+    %tr
+      %td
+        = check_box_tag "messages[]", msg.id
+      %td
+        = link_to msg.title, message_path(msg)#:controller => "message", :action => "show", :id => msg
+      %td
+        = link_to "Mark as read", :controller => "messages", :action => "mark_read", :id => msg
+      %td
+        = link_to "Reply", :controller => "messages", :action => "reply", :id => msg
+      %td
+        = #link_to "delete", message_path(msg), :method => :delete
+  - for msg in @user.read_messages
+    %tr
+      %td
+        = check_box_tag "messages[]", msg.id
+      %td
+        = link_to msg.title, message_path(msg)#:controller => "message", :action => "show", :id => msg
+      %td
+        = link_to "Reply", :controller => "messages", :action => "reply", :id => msg
+      %td
+        = #link_to "delete", message_path(msg), :method => :delete
+

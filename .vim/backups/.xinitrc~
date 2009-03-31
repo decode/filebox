@@ -1,0 +1,13 @@
+export LC_CTYPE="en_US.UTF-8"
+
+LANG='en_US.UTF-8' scim -d
+export XMODIFIERS=@im=SCIM
+export GTK_IM_MODULE="scim"
+export QT_IM_MODULE="scim"
+
+xrdb ~/.Xresources
+
+xbindkeys &
+awsetbg /home/home/desktop/ArchWood1.jpg
+#exec awesome
+exec ion3

@@ -1,0 +1,3 @@
+When /^I goto the forum first page$/ do
+end
+

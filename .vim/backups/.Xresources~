@@ -1,0 +1,80 @@
+!! RXVT setting
+!URxvt.background:black
+!URxvt.foreground:green
+!URxvt.geometry: 90x25+180+200
+!URxvt.colorBD:yellow
+!URxvt.colorUL:green
+!URxvt.cursorColor:red3
+!URxvt.color0:black
+!URxvt.color1:red3
+!URxvt.color2:springgreen
+!URxvt.color3:wheat3
+!URxvt.color4:navy
+!URxvt.color5:magenta4
+!URxvt.color6:steelblue1
+!URxvt.color7:gray85
+!!URxvt.color8:gray10
+!URxvt.color9:orangered2
+!URxvt.color10:chartreuse3
+!URxvt.color11:lightgoldenrod2
+!URxvt.color12:skyblue1
+!URxvt.color13:pink1
+!!URxvt.color14:lightblue1
+
+URxvt.background:black
+URxvt.foreground:white
+URxvt.colorBD:yellow
+URxvt.colorUL:Green
+URxvt.color0: #000000
+URxvt.color1: #CC0000
+URxvt.color2: #4E9A06
+URxvt.color3: #C4A000
+URxvt.color4: #3465A4
+URxvt.color5: #75507B
+URxvt.color6: steelblue1
+URxvt.color7: #D3D7CF
+URxvt.color8: #555753
+URxvt.color9: #EF2929
+URxvt.color10: #8AE234
+URxvt.color11: #FCE94F
+URxvt.color12: #729FCF
+URxvt.color13: #AD7FA8
+URxvt.color14: #34E2E2
+URxvt.color15: #EEEEEC
+
+URxvt.scrollBar:False
+URxvt.saveLines:3000
+URxvt.font:xft:Bitstream Vera Sans Mono-12,xft:Lihei Pro-9
+URxvt.boldFont:xft:Bitstream Vera Sans Mono-12:Bold,xft:WenQuanYi Bitmap Song-9:Bold
+URxvt.preeditType:Root
+URxvt.inheritPixmap:true
+!URxvt.backgroundPixmap:~/desktop/wallpaper/vladstudio_alien_and_chameleon_1024x768.jpg 
+!tab功能
+!記得加入：
+!!URxvt.perl-ext-common: default,tabbed
+
+!look and feel
+xterm.termName: xterm-256color
+xterm.geometry: 80x36
+xterm*scrollBar: false
+xterm*rightScrollBar: true
+xterm*loginshell: true
+xterm*cursorBlink: true
+xterm*background:  black
+xterm*foreground:  gray
+xterm.borderLess: true
+xterm.cursorBlink: true
+xterm*colorUL: yellow
+xterm*colorBD: white
+
+!font and locale
+xterm*locale: true
+xterm.utf8:     true
+xterm*utf8Title: true
+xterm*fontMenu*fontdefault*Label: Default
+xterm*faceName: Monaco:antialias=True:pixelsize=15
+xterm*faceName: monofur:antialias=True:pixelsize=20
+xter*boldFont: DejaVu Sans Mono:style=Bold:pixelsize=15
+xterm*faceNameDoublesize: Lihei Pro:pixelsize=16:antialias=True
+xterm*xftAntialias: true
+xterm*cjkWidth:false

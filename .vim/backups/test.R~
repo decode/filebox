@@ -1,0 +1,11 @@
+?help(kmeans)
+
+f <- 0.5
+
+?help(kmeans)
+
+s <- data.frame(c(1:3))
+
+prime <- function(n) {
+    prime <- function(x)
+}

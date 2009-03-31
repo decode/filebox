@@ -1,0 +1,8 @@
+#message_container
+  = link_to "Message Box", :action => "message"
+ 
+#friend_container
+  = link_to "Friend Box", :action => "friend"
+
+#block_container
+  = link_to "Block Box", :action => "show_block"
