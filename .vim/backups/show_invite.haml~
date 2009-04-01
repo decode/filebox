@@ -1,7 +1,0 @@
-- form_for :message do |f|
-  = f.text_field :title
-  = f.text_area :content
-  
-  = submit_tag "Send"
-
-

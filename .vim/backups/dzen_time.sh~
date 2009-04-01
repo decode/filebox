@@ -1,5 +1,0 @@
-#!/bin/bash
-A_FNT='-*-microsoft yahei-medium-r-normal-*-16-*-*-*-*-*-*-*'
-message=`date +'%R %p'`
-CAPTION="^i(/home/home/tools/awesome/clock1.xpm)"
-(echo $CAPTION "Now: " $message) | dzen2 -h 65 -w 450 -p 3 -y 750 -x 1150 -bg gray10 -ta l -fn "$A_FNT"

@@ -1,5 +1,0 @@
-log/*.log
-tmp/*
-coverage/*
-config/database.yml
-.gitignore.swp
