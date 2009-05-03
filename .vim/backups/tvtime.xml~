@@ -1,0 +1,532 @@
+<?xml version="1.0"?>
+<!DOCTYPE tvtime PUBLIC "-//tvtime//DTD tvtime 1.0//EN"
+  "http://tvtime.sourceforge.net/DTD/tvtime1.dtd">
+<tvtime xmlns="http://tvtime.sourceforge.net/DTD/">
+
+  <!--
+    Default $HOME/.tvtime/tvtime.xml configuration file.
+    Do not edit this config file while tvtime is running, it
+    will be overwritten during runtime to update program settings.
+  -->
+
+
+  <!--
+    The verbose setting indicates that we should print full
+    informational and warning messages to stderr while running tvtime.
+    Otherwise, only fatal errors will be printed to the output.
+  -->
+  <option name="Verbose" value="0"/>
+
+
+  <!-- This sets the default capture device to use. -->
+  <option name="V4LDevice" value="/dev/video0"/>
+
+  <!--
+    This sets the default capture card input to be opened by tvtime.
+    For example, for my WinTV card has the tuner as source 0, and
+    its composite input as source 1.  Sources can be changed at runtime
+    using the "toggle_input" command, which is key command "i" by
+    default.
+  -->
+  <option name="V4LInput" value="0"/>
+
+  <!--
+    This sets the default TV norm.  Valid options are:
+       NTSC
+       NTSC-JP
+       SECAM
+       PAL
+       PAL-Nc
+       PAL-M
+       PAL-N
+       PAL-60
+  -->
+  <option name="Norm" value="NTSC"/>
+
+  <!--
+    This sets the default frequency table to use for any tuners found.
+    Possibilities are:
+       us-cable
+       us-broadcast
+       japan-cable
+       japan-broadcast
+       europe
+       australia
+       australia-optus
+       newzealand
+       france
+       russia
+  -->
+  <option name="Frequencies" value="US-Cable"/>
+
+  <!--
+    There are two special NTSC cable standards in the US: IRC and HRC.
+    In IRC, channels 5 and 6 are on different frequencies, and HRC mode
+    shifts all frequencies up by 1.25MHz (and is also weird on channels
+    5 and 6).  Use this option to set the cable mode to "Standard",
+    "IRC", or "HRC".  It is very rare that you will see cable systems
+    that use IRC or HRC cable.
+  -->
+  <option name="NTSCCableMode" value="Standard"/>
+
+  <!--
+    Toggle whether tvtime should check if there is a signal present
+    when changing channels etc.  If your card doesn't suck, you
+    shouldn't need to shut this off.  Disabling this feature will also
+    disable the channel scanner.
+  -->
+  <option name="CheckForSignal" value="1"/>
+
+  <!--
+    This sets how many pixels per scanline to request from the capture
+    card.  A higher setting gives better quality, while a lower setting
+    means we do less work, and so tvtime will run faster.  If you have
+    a slower CPU (like, less than 500Mhz or so), maybe values of 480
+    or 400 might suit you best.  For best quality, choose a high value
+    like 720 or 768.  Most capture cards cannot sample higher than 768
+    pixels per scanline.
+  -->
+  <option name="InputWidth" value="720"/>
+
+  <!--
+    Set this to a filename to get show listings from an xmltv file.
+    Set to "none" if you do not wish to use xmltv.
+  -->
+  <option name="XMLTVFile" value="none"/>
+
+  <!--
+    Set this to a two-letter language code to set the language to use
+    for entries in the XMLTV file (for example, use "de" for German).
+    Set to "none" if you wish to use the default language of the file.
+  -->
+  <option name="XMLTVLanguage" value="none"/>
+
+  <!--
+    Set this to 1 to enable XDS channel information decoding.  This
+    option is specific to NTSC regions.  XDS is used to send information
+    about the channel including the network name and call letters, and
+    sometimes information about the current show.  This information is
+    then shown on the OSD and saved to the stationlist.xml file.
+  -->
+  <option name="UseXDS" value="0"/>
+
+  <!--
+    This sets which device to use for VBI decoding.
+  -->
+  <option name="VBIDevice" value="/dev/vbi0"/>
+
+  <!--
+    This sets the mixer device and channel to use.  The format is device
+    name:channel name.  Valid channels are:
+      vol, bass, treble, synth, pcm, speaker, line, mic, cd, mix, pcm2,
+      rec, igain, ogain, line1, line2, line3, dig1, dig2, dig3, phin,
+      phout, video, radio, monitor
+   -->
+  <option name="MixerDevice" value="/dev/mixer:line"/>
+
+  <!--
+    This option enables 16:9 aspect ratio mode by default on startup.
+  -->
+  <option name="Widescreen" value="0"/>
+
+  <!--
+    Disabling this option tells tvtime to use the X server DPI to determine
+    pixel shape.  By default, tvtime assumes pixels are square.  Set this
+    to 0 if you have a 4:3 monitor but run it at 1280x1024 and want tvtime
+    to do the right thing.
+  -->
+  <option name="SquarePixels" value="1"/>
+
+  <!--
+    Sets the geometry of the window.  A width value of 0 signifies
+    that the appropriate width for the given height will be used.
+    For 4:3 content on a square pixel display, this defaults to a
+    768x576 window.
+  -->
+  <option name="WindowGeometry" value="0x576"/>
+
+  <!--
+    This sets the percent of the sides to leave to the overscan, that
+    is, don't show them at all.  Safe action area on a television is 10%
+    in the overscan, but that's a bit restrictive.  If you want tvtime
+    to look like a TV, a good value would be about 6-8%.  The value is
+    in percent, so for 8%, use 8.0.
+  -->
+  <option name="Overscan" value="3.5"/>
+
+  <!--
+    Set this to 1 to have tvtime start in fullscreen mode.  This setting is
+    set at runtime so that when you quit tvtime in fullscreen, starting it
+    again will start back in fullscreen mode.
+  -->
+  <option name="Fullscreen" value="0"/>
+
+  <!--
+    Sets the position of the output when in fullscreen mode: top, bottom
+    or centre.  When set to top, tvtime in fullscreen will place its output
+    at the top of the screen.  Use this if you have a projector to help
+    tvtime fit properly onto your screen.
+  -->
+  <option name="FullscreenPosition" value="Centre"/>
+
+  <!--
+    Set this to 1 to have tvtime start in always-on-top mode under
+    supporting window managers.  This setting is set at runtime so
+    that when you quit tvtime in always-on-top mode, starting it again
+    will start back in always-on-top mode.
+  -->
+  <option name="AlwaysOnTop" value="0"/>
+
+  <!--
+    This sets the framerate of the output from tvtime.
+
+    0 = Full framerate mode, every field is deinterlaced.
+        59.94fps for NTSC, 50fps for PAL.
+    1 = Half framerate mode, deinterlace every top field to a frame (TFF).
+        29.97fps for NTSC, 25fps for PAL.
+    2 = Half framerate mode, deinterlace every bottom field to a frame (BFF).
+        29.97fps for NTSC, 25fps for PAL.
+
+    The two half framerate modes are useful for progressive content from
+    video game consoles.  Use weave and select either TFF or BFF, whichever
+    does not exhibit interlace effects.
+  -->
+  <option name="FramerateMode" value="0"/>
+
+  <!--
+    This option indicates whether tvtime should enable its own saving and
+    restoring of picture settings, both on startup and per channel change.
+  -->
+  <option name="SaveAndRestorePictureSettings" value="1"/>
+
+  <!--
+    If Save/Restore is turned on, this is where we store the global
+    default settings.  Each value is from 0-100.  If the value is -1, then
+    we don't set that setting on startup.
+  -->
+  <option name="DefaultBrightness" value="-1"/>
+  <option name="DefaultContrast" value="-1"/>
+  <option name="DefaultColour" value="-1"/>
+  <option name="DefaultHue" value="-1"/>
+
+  <!--
+    This option saves the last used audio mode.  This will be used to
+    remember which audio mode to select when the application is next
+    started.  Valid options here are "mono", "stereo", "lang1", "lang2"
+    or "sap".
+  -->
+  <option name="AudioMode" value="stereo"/>
+
+  <!--
+    This option sets the audio boost.  This is a percentage for how
+    much to set the volume coming out of the capture card.  By default,
+    tvtime does not set the audio at all.  However, because the volume
+    sometimes does not have a sane default, or is reset by other
+    applications, you can use this value to have it always set to your
+    favorite volume.  Use -1 to have tvtime not touch the volume.
+  -->
+  <option name="AudioBoost" value="-1"/>
+
+  <!--
+    This option saves the state of closed caption decoding.  Closed
+    captions are an NTSC-specific text version of the audio for the
+    hearing impaired.
+  -->
+  <option name="ShowCC" value="0"/>
+
+  <!--
+    This value saves the on-off state of the colour invert filter across
+    sessions.
+  -->
+  <option name="ColourInvert" value="0"/>
+
+  <!--
+    This value saves the on-off state of the mirror filter across sessions.
+  -->
+  <option name="MirrorInput" value="0"/>
+
+  <!--
+    When this option is turned on, screenshots will not announce
+    themselves on the OSD.  This is useful if you intend to take a
+    lot of screenshots, and don't want the text to interrupt your TV
+    watching or appear in other screenshots.
+  -->
+  <option name="QuietScreenshots" value="0"/>
+
+
+  <!--
+    Sets the default process priority.  By default, tvtime tries to
+    set itself at a priority of -10 which is higher than normal
+    applications.  Acceptable values are from -20 to 20, with lower
+    values meaning higher priority.
+  -->
+  <option name="ProcessPriority" value="-10"/>
+
+  <!--
+    Sets the time format to be used in the tvtime on-screen display.
+    The format is a string in the same format as strftime(3).  The
+    default is to use the time format of your locale.
+  -->
+  <option name="TimeFormat" value="%X"/>
+
+  <!--
+    This is the default directory in which screenshots are placed.
+    The default is to save them into the user's home directory.
+  -->
+  <option name="ScreenShotDir" value="~"/>
+
+  <!--
+    These options set the ARGB colours used for the text in the
+    on-screen display.  The default for the channel name is "yellow"
+    (0xffffff00), and the default for the surrounding text is "wheat"
+    (0xfff5deb3).  The colour format can be hexadecimal or decimal.
+    If the alpha channel is not specified the default is "opaque" (255).
+
+    Examples: 0xffaadd, 0xff0000ff, 0xff, 0xffff, 255 255 0, 0, 
+              16777215.
+  -->
+  <option name="ChannelTextFG" value="0xFFFFFF00"/>
+  <option name="OtherTextFG" value="0xFFF5DEB3"/>
+
+  <!--
+    This setting saves the volume before muting across tvtime
+    sessions.  You should not ever need to set this yourself.
+  -->
+  <option name="UnmuteVolume" value="-1"/>
+
+  <!--
+    This setting saves whether or not tvtime was muted when it was
+    last exited.  You should not ever need to set this yourself.
+  -->
+  <option name="Muted" value="0"/>
+
+  <!--
+    This setting controls whether tvtime should mute its mixer device on
+    exit.  This can be used to work around noisy capture cards.
+  -->
+  <option name="MuteOnExit" value="0"/>
+
+  <!--
+    This setting controls whether tvtime should show the silly taglines
+    in the window title bar.  Set to 0 to shut them off.
+  -->
+  <option name="ShowTaglines" value="1"/>
+
+  <!--
+    This setting is saved at runtime to remember the current channel.
+  -->
+  <option name="PrevChannel" value="2"/>
+
+  <!--
+    This setting is saved at runtime to remember the previous channel.
+  -->
+  <option name="Channel" value="2"/>
+
+  <!--
+    This setting is saved at runtime the deinterlacer used.
+
+    Supported deinterlacers are:
+
+    TelevisionFull    Television: Full Resolution
+    TelevisionHalf    Television: Half Resolution
+    BlurVertical      Blur: Vertical
+    BlurTemporal      Blur: Temporal
+    AdaptiveSearch    Motion Adaptive: Motion Search
+    AdaptiveAdvanced  Motion Adaptive: Advanced Detection
+    AdaptiveSimple    Motion Adaptive: Simple Detection
+    ProgressiveTFF    Progressive: Top Field First
+    ProgressiveBFF    Progressive: Bottom Field First
+  -->
+  <option name="DeinterlaceMethod" value="AdaptiveAdvanced"/>
+
+
+  <!--
+    The rest of the configuration file defines how the input to
+    tvtime is mapped to tvtime commands.  Each command can be bound
+    to multiple keys and mouse buttons.  Up to nine mouse buttons
+    are supported.
+
+
+    Commands known to tvtime:
+
+      AUTO_ADJUST_PICT           PICTURE_UP
+      AUTO_ADJUST_WINDOW         PICTURE_DOWN
+      BRIGHTNESS_DOWN            RESTART
+      BRIGHTNESS_UP              RIGHT
+      CHANNEL_1                  RUN_COMMAND
+      CHANNEL_2                  SATURATION_DOWN
+      CHANNEL_3                  SATURATION_UP
+      CHANNEL_4                  SAVE_PICTURE_GLOBAL
+      CHANNEL_5                  SAVE_PICTURE_CHANNEL
+      CHANNEL_6                  SCREENSHOT
+      CHANNEL_7                  SET_AUDIO_BOOST
+      CHANNEL_8                  SET_AUDIO_MODE
+      CHANNEL_9                  SET_DEINTERLACER
+      CHANNEL_0                  SET_FRAMERATE
+      CHANNEL_ACTIVATE_ALL       SET_FREQUENCY_TABLE
+      CHANNEL_DEC                SET_FULLSCREEN_POSITION
+      CHANNEL_DOWN               SET_INPUT
+      CHANNEL_INC                SET_INPUT_WIDTH
+      CHANNEL_JUMP               SET_MATTE
+      CHANNEL_PREV               SET_NORM
+      CHANNEL_RENUMBER           SET_STATION
+      CHANNEL_SAVE_TUNING        SET_XMLTV_LANGUAGE
+      CHANNEL_SCAN               SHOW_DEINTERLACER_INFO
+      CHANNEL_SKIP               SHOW_MENU
+      CHANNEL_UP                 SHOW_STATS
+      COLOR_DOWN                 SLEEP
+      COLOR_UP                   TOGGLE_ALWAYSONTOP
+      COLOUR_DOWN                TOGGLE_ASPECT
+      COLOUR_UP                  TOGGLE_AUDIO_MODE
+      CONTRAST_DOWN              TOGGLE_BARS
+      CONTRAST_UP                TOGGLE_CC
+      DISPLAY_INFO               TOGGLE_CHANNEL_PAL_DK
+      DISPLAY_MESSAGE            TOGGLE_CHROMA_KILL
+      DOWN                       TOGGLE_COLOR_INVERT
+      ENTER                      TOGGLE_COLOUR_INVERT
+      FINETUNE_DOWN              TOGGLE_DEINTERLACER
+      FINETUNE_UP                TOGGLE_FULLSCREEN
+      HUE_DOWN                   TOGGLE_FRAMERATE
+      HUE_UP                     TOGGLE_INPUT
+      KEY_EVENT                  TOGGLE_MATTE
+      LEFT                       TOGGLE_MIRROR
+      MENU_DOWN                  TOGGLE_MUTE
+      MENU_ENTER                 TOGGLE_NTSC_CABLE_MODE
+      MENU_EXIT                  TOGGLE_PAL_DK_AUDIO
+      MENU_BACK                  TOGGLE_PAL_SECAM
+      MENU_UP                    TOGGLE_PAUSE
+      MIXER_DOWN                 TOGGLE_PULLDOWN_DETECTION
+      MIXER_TOGGLE_MUTE          TOGGLE_QUIET_SCREENSHOTS
+      MIXER_UP                   TOGGLE_SIGNAL_DETECTION
+      NOOP                       TOGGLE_XDS
+      OVERSCAN_DOWN              TOGGLE_XMLTV_LANGUAGE
+      OVERSCAN_UP                UP
+      PICTURE                    QUIT
+
+    Special keys known by tvtime:
+
+      Up, Down, Left, Right, Insert, Home, End, PgUp, Page_Up, PageUp,
+      PgDn, Page_Down, PageDown, F1, F2, F3, F4, F5, F6, F7, F8, F9,
+      F10, F11, F12, F13, F14, F15 Backspace, BS, Delete, Del, Esc,
+      Escape, Enter, Print, Menu, Tab
+  -->
+
+  <bind command="quit">
+    <keyboard key="escape"/>
+    <keyboard key="q"/>
+  </bind>
+
+  <bind command="show_menu">
+    <keyboard key="F1"/>
+    <keyboard key="Tab"/>
+    <mouse button="3"/>
+  </bind>
+
+  <bind command="up">
+    <keyboard key="up"/>
+    <mouse button="4"/>
+  </bind>
+
+  <bind command="down">
+    <keyboard key="down"/>
+    <mouse button="5"/>
+  </bind>
+
+  <bind command="left">
+    <keyboard key="left"/>
+    <keyboard key="-"/>
+  </bind>
+
+  <bind command="right">
+    <keyboard key="right"/>
+    <keyboard key="+"/>
+  </bind>
+
+  <bind command="channel_prev">
+    <keyboard key="backspace"/>
+  </bind>
+
+  <bind command="toggle_mute">
+    <keyboard key="m"/>
+    <mouse button="2"/>
+  </bind>
+
+  <bind command="enter">
+    <keyboard key="enter"/>
+  </bind>
+
+  <bind command="picture">
+    <keyboard key="F5"/>
+  </bind>
+
+  <bind command="picture_down">
+    <keyboard key="F6"/>
+  </bind>
+
+  <bind command="picture_up">
+    <keyboard key="F7"/>
+  </bind>
+
+  <bind command="show_stats">
+    <keyboard key="d"/>
+  </bind>
+
+  <bind command="toggle_aspect">
+    <keyboard key="a"/>
+  </bind>
+
+  <bind command="toggle_fullscreen">
+    <keyboard key="f"/>
+  </bind>
+
+  <bind command="toggle_input">
+    <keyboard key="i"/>
+  </bind>
+
+  <bind command="screenshot">
+    <keyboard key="s"/>
+  </bind>
+
+  <bind command="toggle_cc">
+    <keyboard key="c"/>
+  </bind>
+
+  <bind command="toggle_audio_mode">
+    <keyboard key="e"/>
+  </bind>
+
+  <bind command="display_info">
+    <mouse button="1"/>
+  </bind>
+
+  <bind command="toggle_alwaysontop">
+    <keyboard key="v"/>
+  </bind>
+
+  <!--
+    The following keys are active when tvtime is displaying the menu.
+   -->
+  <bind command="menu_exit">
+    <keyboard key="esc"/>
+    <keyboard key="q"/>
+    <keyboard key="F1"/>
+    <keyboard key="Tab"/>
+  </bind>
+
+  <bind command="menu_enter">
+    <keyboard key="enter"/>
+    <mouse button="1"/>
+    <mouse button="3"/>
+  </bind>
+
+  <!--
+    The following keys are not part of the core tvtime functionality,
+    that is, they are mostly for debugging, but are bound to keys by
+    default in tvtime.
+   -->
+
+  <bind command="auto_adjust_window">  <keyboard key="/"/>    </bind>
+  <bind command="mixer_toggle_mute">   <keyboard key=","/>    </bind>
+  <bind command="auto_adjust_pict">    <keyboard key=" "/>    </bind>
+
+</tvtime>

@@ -1,0 +1,9 @@
+- content_for :panel do
+  = tabnav :panel  
+
+.span-24
+  .box
+    %p
+      Welcome to the manage box! You could post your article, 
+      receive your messages and manage users from this page.
+  

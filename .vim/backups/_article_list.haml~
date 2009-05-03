@@ -1,0 +1,16 @@
+#article_content
+  - if @articles.count == 0
+    #article_title Welcome to my blog
+    #article_body Wish you have a happy tour in my site
+  - for article in @articles
+    #article_title
+      = article.title
+    #article_time
+      = "Posted at: "
+      = article.created_at
+    #article_body
+      = article.body
+      = link_to 'more...', user_article_url(@user,article)
+    #status
+      = " Comment: "
+      = article.follow_messages.count

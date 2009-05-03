@@ -1,0 +1,27 @@
+.span-18
+  = render :partial => 'article_list'
+
+.span-6.last 
+  = "Links"
+  %ul
+    %li
+      = link_to 'Gallary', user_gallaries_path(@user)#:controller => 'gallaries', :action => 'view', :id => @user
+  %hr
+  = "Latest Articles"
+  %hr
+  %ul
+    - for article in @articles
+      %li
+        = link_to article.title, user_article_url(@user,article)
+  = "Latest comments"
+  = @latest_comments.count
+  %hr
+  %ul
+    - for comment in @latest_comments
+      %li
+        - link = url_for :controller => 'messages', :action => 'show', :id => comment.follow_message, :anchor=>"message-#{comment.id}"
+        = link_to comment.user.login, user_article_path(@user, comment), {:href => link} 
+        = ": "
+        = comment.body
+
+

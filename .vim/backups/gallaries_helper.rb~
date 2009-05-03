@@ -1,0 +1,6 @@
+module GallariesHelper
+  def attachment_column(record)
+    link_to h(record.attachment)
+  end
+
+end

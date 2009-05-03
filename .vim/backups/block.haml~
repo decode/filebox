@@ -1,0 +1,7 @@
+- content_for :panel do
+  = tabnav :panel
+
+= render :partial => 'block_list'
+
+-#
+  = render :active_scaffold => 'users', :constraints => {:user_id => current_user.id, :

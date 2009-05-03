@@ -1,0 +1,49 @@
+<%  
+# this partial renders a navigation bar, you can call it in your views with:
+#   <% navigation :status % > 
+#
+# you can pass render_navigation a few options:
+#   :generate_css => true|false #=> generates a default inline css for the tabnav, defaults to false
+#   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
+#  
+render_navigation :status, :generate_css => true do 
+    unless current_user
+      add_item do |i|
+        # i.html = {:id => 'logout_link'}
+        i.named 'Login' 
+        i.links_to '/user_session/new'
+      end
+
+      add_item do |i|
+        i.named 'Register' 
+        i.titled 'Get a new account'
+        i.links_to new_user_url
+      end
+    else
+      add_item do |i|
+        i.named 'Welcome: ' + current_user.login
+        i.disable!
+      end
+
+      add_item do |i|
+        i.named 'Profile'
+        #i.links_to account_url
+        i.links_to '/user/' + current_user.login + '/panel'
+      end
+      add_item do |i|
+        i.html = {:method => :delete}
+        i.named 'Logout'
+        i.links_to user_session_path(current_user), {:method=>:delete}
+      end
+    end
+    
+    # you can pass add_item a block to just like the tabnav!
+    #  
+    # add_item do |i|
+    #   i.html = {:id => 'logout_link'}
+    #   i.named 'logout', 
+    #   i.links_to :action => 'logout'
+    # end
+    #
+end 
+%>

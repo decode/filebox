@@ -1,0 +1,1 @@
+= render :active_scaffold => 'messages', :constraints => "follow_id is null and message_type='topic'"

@@ -1,0 +1,157 @@
+set pager_index_lines=10
+set index_format="| %4C | %Z | %{%b %d} | %-15.15L | %s" 
+set folder_format="| %2C | %t %N | %8s | %d | %f"
+#set editor="emacs -nw"
+set editor="vim"
+#建立信箱
+set folder="~/mail"
+set mbox="~/mail/default"
+set mbox_type=maildir
+set spoolfile="~/mail/default"
+set postponed="~/mail/postponed"
+set record="~/mail/sent"
+
+#让mutt监视下面几个邮箱，并随时报告新邮件
+#mailboxes "=inbox"
+#mailboxes "=Gmail"
+mailboxes =duplicates
+mailboxes =default
+mailboxes =friends
+mailboxes =junk
+mailboxes =spam
+mailboxes =keep
+mailboxes =maillist
+mailboxes =ion-general
+mailboxes =ruby-talk
+mailboxes =merb-devel
+mailboxes =gentoo-desktop
+mailboxes =rubygems-developers
+mailboxes =conkeror
+
+set check_new=yes
+set timeout=60
+
+set signature=~/mail/signature
+#Receive mail
+#set pop_last=yes
+#set pop_pass="1090/jjh"
+#set pop_user=aero723@gmail.com
+#set pop_host=pops://pop.gmail.com
+
+#发信设置
+set sendmail="/usr/bin/msmtp"
+set use_from=yes
+set from=aero723@gmail.com
+set envelope_from=yes
+
+# 终端的编码
+set charset="UTF-8"
+# 外发邮件使用的编码
+set send_charset="UTF-8"
+# 用中文格式显示日期
+set locale="zh_CN.UTF-8"
+# 解决没有设置字符编码的信件显示为乱码的问题
+charset-hook ^us-ascii$ GB18030
+# 解决主题为utf-8的信件标题显示为乱码的问题
+charset-hook !UTF-8 GB18030
+# 解决未经过MIME编码的信件显示为乱码的问题
+#set strict_mime=no
+set assumed_charset="GB18030"
+# 解决中文附件名为乱码的问题
+set rfc2047_parameters=yes
+
+#set sort = reverse-date
+set sort=threads
+#当用 thread 排序方式时，我们对各个 thread 的相对排序顺序
+set sort_aux=reverse-date
+#score "~N" +4
+#score "~s 通知" +2
+#score "~s Circulation" +3
+#score "~D" -5
+#score "~O" +1
+#score "~s believe" -10
+#set sort=score
+
+set pager_stop = yes
+#当你按 "t" 或者 "D" 之类的标记操作时，是否自动把光标移动到下一封信件
+set resolve = yes
+
+macro generic "<esc>1" ":set from=aero723@gmail.com"
+macro generic "<esc>2" ":set from=aero7@bluebottle.com"
+
+set include
+set indent_str="> "
+#set signature="/usr/games/fortune song100 tang300 zh-proverb|col -bp|sed '/m/s/^3.m\\(.*\\)m/\\1/' |"
+
+#外部程序退出时，是否要求用户按一个键才返回。这在察看某些shell命令输出时是要的，
+##否则它们一下就消失了。
+#set wait_key=yes
+
+save-hook .* =keep
+
+
+# 设置要显示的邮件头及其显示顺序
+ ignore *
+ unignore From:
+ unignore To:
+ unignore Reply-To:
+ unignore Subject:
+ unignore Date:
+ unignore CC:
+ unignore BCC:
+ unignore Posted:
+ unignore Delivered-to:
+ unignore List-Id:
+ unignore X-Label:
+ unignore Organization:
+## Display Order
+ hdr_order Subject: To: CC: BCC: From: Date: Reply-To: X-Label: Organization:
+
+# 自定义界面颜色
+# # --    --          前景色       背景色
+# # 状态栏
+ color   status      white       blue
+# # 当前行
+ color   indicator   black       white
+# # 信头
+ color   hdrdefault  magenta     default
+# # 附件
+ color   attachment  yellow      default
+# # 引用
+ color   quoted      green       default
+# # 邮件空白处
+# color   tilde       white       default
+# # 线索
+# color   tree        cyan        default
+# # 提示信息
+# color   message     white       default
+# # 签名
+ color   signature   white       default
+# # 错误信息
+ color   error       white       red
+# # 普通文件
+ color   normal      white     default
+
+# 特殊邮件头
+ color header     brightgreen   default          "^Subject:"
+ color header     brightyellow  default          "^To:"
+ color header     brightyellow  default          "^CC:"
+ color header     brightyellow  default          "^BCC:"
+ color header     yellow        default          "^From:"
+ color header     yellow        default          "^Reply-To:"
+ color header     yellow        default          "^Date:"
+ color header     brightblue    brightdefault    "^X-Label:"
+# # 特殊状态
+ color index      brightyellow  default          "~F"  # 长期标记
+ color index      yellow        default          "~T"  # 短期标记
+ color index      brightred     default          "~D"  # 删除
+ color index      brightgreen   default          "~U"  # 未读信件
+
+
+macro index G "!fetchmail -av\r"
+macro pager G "!fetchmail -av\r"
+
+macro index,pager A "!~/tools/abook-export.sh\n:source ~/mail/aliases\n" "Start abook"
+macro index,pager a \
+"|~/tools/abook-export.sh --add-email-quiet\n:source ~/mail/aliases\n" \
+"Create new alias from the actual message"

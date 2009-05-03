@@ -1,0 +1,46 @@
+#site_menu
+  /*:font 12px verdana, arial, sans-serif
+  :list-style none
+  :padding 0
+  :margin 0
+  :float right
+  li
+    :float left
+    a
+      :display block
+      /* If mixed words, use fixed width.
+      /* width:150px
+      /* height:30px
+      /* line-height:30px
+      /* text-align:center
+      :padding 8px 50px
+      :background #3A4953
+      :color #fff
+      :text-decoration none
+      :border-right 1px solid #000
+      &:hover
+        :background #146C9C
+        :color #fff
+        :text-decoration none
+        :border-right 1px solid #000
+      &.last
+        :border-right 0 /* remove left frame */
+
+#passbox
+  :position absolute
+  :left 0
+  :width 100%
+  :z-index 100
+  :text-align center
+  :line-height 0
+
+
+#passbox_overlay
+  :position absolute
+  :top 0
+  :left 0
+  :z-index 90
+  :width 100%
+  :height 500px
+  :background-color #000
+	

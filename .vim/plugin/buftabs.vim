@@ -1,16 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buftabs (C) 2006 Ico Doornekamp
 "
-" This program is free software; you can redistribute it and/or
-" modify it under the terms of the GNU General Public License
-" as published by the Free Software Foundation; either version 2
-" of the License, or (at your option) any later version.
-"
-" This program is distributed in the hope that it will be useful,
-" but WITHOUT ANY WARRANTY; without even the implied warranty of
-" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-" GNU General Public License for more details.
-"
 " Introduction
 " ------------
 " This is a simple script that shows a tabs-like list of buffers in the bottom
@@ -41,7 +31,7 @@
 " * g:buftabs_only_basename
 "
 "   Define this variable to make buftabs only print the filename of each buffer,
-"   omitting the preceding directory name. Add to your .vimrc:
+"   omitting the directory name. Add to your .vimrc:
 "
 "   :let g:buftabs_only_basename=1
 "
@@ -66,31 +56,25 @@
 " Changelog
 " ---------
 " 
-" 0.1	 2006-09-22	 Initial version	
+" 0.1	2006-09-22	Initial version	
 "
-" 0.2	 2006-09-22  Better handling when the list of buffers is longer then the
-"                  window width.
+" 0.2	2006-09-22  Better handling when the list of buffers is longer then the
+"                 window width.
 "
-" 0.3	 2006-09-27  Some cleanups, set 'hidden' mode by default
+" 0.3	2006-09-27  Some cleanups, set 'hidden' mode by default
 "
-" 0.4	 2007-02-26  Don't draw buftabs until VimEnter event to avoid clutter at
-"                  startup in some circumstances
+" 0.4	2007-02-26  Don't draw buftabs until VimEnter event to avoid clutter at
+"                 startup in some circumstances
 "
-" 0.5	 2007-02-26  Added option for showing only filenames without directories
-"                  in tabs
+" 0.5	2007-02-26  Added option for showing only filenames without directories
+"                 in tabs
 "
-" 0.6	 2007-03-04  'only_basename' changed to a global variable.  Removed
-"                  functions and add event handlers instead.  'hidden' mode 
-"                  broke some things, so is disabled now. Fixed documentation
+" 0.6	2007-03-04  'only_basename' changed to a global variable.  Removed
+"                 functions and add event handlers instead.  'hidden' mode 
+"                 broke some things, so is disabled now. Fixed documentation
 "
-" 0.7  2007-03-07	 Added configuration option to show tabs in statusline
-"                  instead of cmdline
-"
-" 0.8  2007-04-02	 Update buftabs when leaving insertmode
-"
-" 0.9  2007-08-22	 Now compatible with older Vim versions < 7.0
-"
-" 0.10 2008-01-26	 Added GPL license
+" 0.7 2007-03-07	Added configuration option to show tabs in statusline
+"                 instead of cmdline
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -112,6 +96,7 @@ endfunction
 function! Buftabs_show()
 
 	let l:i = 1
+	let l:count = 1
 	let l:list = ''
 	let l:start = 0
 	let l:end = 0
@@ -142,12 +127,12 @@ function! Buftabs_show()
 				let l:list = l:list . ' '
 			endif
 				
-			let l:list = l:list . l:i . "-" 
+			let l:list = l:list . l:count . "-" 
 
 			if exists("g:buftabs_only_basename")
 				let l:list = l:list . fnamemodify(bufname(l:i), ":t")
 			else
-				let l:list = l:list . bufname(l:i)
+				let l:list = l:list . fnamemodify(bufname(l:i), ":~:.")
 			endif
 
 			if getbufvar(l:i, "&modified") == 1
@@ -160,6 +145,8 @@ function! Buftabs_show()
 			else
 				let l:list = l:list . ' '
 			endif
+
+			let l:count = l:count + 1
 		end
 
 		let l:i = l:i + 1
@@ -198,10 +185,12 @@ endfunction
 " buffers
 
 autocmd VimEnter * call Buftabs_enable()
-autocmd VimEnter,BufNew,BufEnter,BufWritePost * call Buftabs_show()
-if version >= 700
-	autocmd InsertLeave,VimResized * call Buftabs_show()
-end
+autocmd VimEnter * call Buftabs_show()
+autocmd VimResized * call Buftabs_show()
+autocmd BufNew * call Buftabs_show()
+autocmd BufEnter * call Buftabs_show()
+autocmd BufWritePost * call Buftabs_show()
+autocmd InsertEnter,InsertLeave  * call Buftabs_show()
 
 " vi: ts=2 sw=2
 

@@ -1,0 +1,31 @@
+%h2 Editing gallary
+
+- form_for @gallary do |f|
+  = f.error_messages
+
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :password
+    %br
+    = f.text_field :password
+  %p
+    = f.label :ispublic
+    %br
+    = f.check_box :ispublic
+  %p
+    = f.label :isfriend
+    %br
+    = f.check_box :isfriend
+  %p
+    = f.label :category
+    %br
+    = f.text_field :category
+  %p
+    = f.submit "Update"
+
+= link_to 'Show', @gallary 
+= "|"
+= link_to 'Back', :back

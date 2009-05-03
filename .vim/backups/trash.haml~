@@ -1,0 +1,13 @@
+- content_for :panel do
+  = tabnav :panel
+
+= link_to "Message", :action => "trash"
+
+-form_for @user, :url => {:action => "trash_modify"}, :method => :put do |f|
+  = submit_tag "Delete", :name => "mark_delete"
+  = submit_tag "Mark as read", :name => "mark_read"
+  = submit_tag "Delete forever", :name => "forever_delete"
+  = submit_tag "Move to inbox", :name => "move"
+  %h4 Trash list
+  #trash_list
+    = render :partial => 'trash_message_list'#, :object => @user

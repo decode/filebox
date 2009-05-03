@@ -1,0 +1,16 @@
+.span-24
+  -form_remote_for :user, @user, :url => {:action => "friend_modify"}, :update => 'request_list', :method => :post do |f|
+    = submit_tag "Delete", :name => "delete"
+    = submit_tag "Accept", :name => "accept"
+    = submit_tag "Refuse", :name => "refuse"
+    = submit_tag "Block", :name => "block"
+
+    #request_list
+      %h3 Request:
+      = render :partial => 'request_list'
+    %hr
+
+    #friend_list
+      %h3 Friends:
+      = render :partial => 'friend_list'
+

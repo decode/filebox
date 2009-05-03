@@ -1,0 +1,24 @@
+= form.label :login
+%br
+= form.text_field :login
+%br
+
+= form.label :password, form.object.new_record? ? nil : "Change Password"
+%br
+= form.password_field :password
+%br
+
+= form.label :password_confirmation
+%br
+= form.password_field :password_confirmation
+%br
+
+= form.label :email
+%br
+= form.text_field :email
+%br
+
+= form.label :role
+%br
+= select_tag 'roles[]', options_from_collection_for_select(Role.find(:all), :name, :id)#, {:include_blank => true}
+%br

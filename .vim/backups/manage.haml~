@@ -1,0 +1,31 @@
+- content_for :panel do
+  = tabnav :panel
+
+.span-24
+  .box
+    .prepend-20
+      = link_to 'New article', :action => 'post'
+-#
+  .span-24
+    %table
+      %tr
+        %th Title
+        %th Body
+        %th Date
+        %th
+      - for article in @articles
+        %tr
+          %td
+            = article.title
+          %td
+            = article.body
+          %td
+            = article.created_at
+          %td
+            = link_to 'view', message_path(article)
+            = link_to 'edit', edit_message_path(article)
+            = link_to 'delete', message_path(article), :confirm => 'Are you sure?', :method => :delete
+.span-24
+  = render :active_scaffold => 'messages', :label => ''
+
+=# will_paginate @articles

@@ -1,0 +1,25 @@
+%h1 New message
+
+- form_for(@message) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title
+
+  %p
+    = f.label :body
+    %br
+    = f.text_area :body
+
+  - unless session[:target_message_id].nil?
+    %p
+      = f.label :follow
+      %br
+      = Message.find_by_id(session[:target_message_id]).title
+
+  %p
+    = f.submit "Create"
+
+= link_to 'Back', messages_path
