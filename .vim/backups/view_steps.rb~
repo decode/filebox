@@ -1,9 +1,0 @@
-Given /^I am anonymous accessor$/ do
-  Given "Role anonymous can access controller messages"
-  Given "Role anonymous can access controller users"
-  Given "I am logged in as anonymous named guest"
-end
-
-When /^I use blog view$/ do
-  pending
-end

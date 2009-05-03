@@ -1,7 +1,0 @@
-- form_for :message, :url => {:controller => "users", :action => "invite"} do |f|
-  = f.text_field :title
-  = f.text_area :body
-  
-  = submit_tag "Send"
-
-

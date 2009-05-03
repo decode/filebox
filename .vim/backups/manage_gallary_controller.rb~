@@ -1,3 +1,0 @@
-class ManageGallaryController < ApplicationController
-  active_scaffold :gallaries
-end

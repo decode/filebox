@@ -1,4 +1,0 @@
-#!/bin/bash
-LOOKUP=`sselp`
-#(echo "$LOOKUP"; firefox -newpage "$LOOKUP") && /home/home/tools/amessage.sh $LOOKUP
-(echo "$LOOKUP"; firefox -newtab "$LOOKUP") && /home/home/tools/dzen_message.sh $LOOKUP 

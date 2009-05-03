@@ -1,9 +1,0 @@
-CONNECTION="wireless"
-DESCRIPTION="Internet Connection Share"
-INTERFACE=wlan0
-IWOPTS="mode ad-hoc essid $ESSID channel 11"
-IP="static"
-IFOPTS="192.168.100.1 netmask 255.255.255.0 broadcast 192.168.100.255"
-ESSID="Reboot"
-SECURITY="wpa"
-KEY="whosyourdaddy"
