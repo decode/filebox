@@ -1,0 +1,5 @@
+#Triggers file version 1.0
+-publics -pattern '*eitx*' -command 'exec - echo -e "^tw() ^fg(grey50)[$Z] ^fg(orange)"$\N" on "$\C"\n ^fg(grey50)[$Z] ^fg(orange)"$\N"^fg(grey50)@"$\C"^fg()> "$\M > /home/home/.irssi_pipe' 
+-privmsgs -command 'exec - echo -e "^tw() ^fg(grey50)[$Z] ^fg(red)!!! PM from "$\N"\n ^fg(grey50)[$Z] ^fg(red)!!! "$\N^"fg()> "$\M > /home/home/.irssi_pipe' 
+-publics -channels '#ion' -command 'exec - echo -e "^tw() ^fg(grey50)[$Z] ^fg(orange)"$\N" on "$\C"\n ^fg(grey50)[$Z] ^fg(orange)"$\N"^fg(grey50)@"$\C"^fg()> "$\M > /home/home/.irssi_pipe' 
+-publics -channels '#awesome' -command 'exec - echo -e "^tw() ^fg(grey50)[$Z] ^fg(green)"$\N" on "$\C"\n ^fg(grey50)[$Z] ^fg(green)"$\N"^fg(grey50)@"$\C"^fg()> "$\M > /home/home/.irssi_pipe' 
