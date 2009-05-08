@@ -1,0 +1,4 @@
+script load notify.pl
+script load qirssi.pl
+qirssi priv icon,balloon
+qirssi pub icon Eitx
