@@ -38,12 +38,13 @@ if not rss_feed then
         -- add other sites
 		{"Newest Ebuilds", "http://gentoo-portage.com/RSS/Newest/", 1 },
 		{"Ion news", "http://modeemi.fi/~tuomov/ion/news.rss", 1},
+    {"Ruby Flow", "http://feeds2.feedburner.com/Rubyflow", 1},
 		{"LinuxSir", "http://www.linuxsir.org/bbs/external.php?type=RSS", 1 },
-		{"UbuntuCN", "http://forum.ubuntu.org.cn/rss.php?atom", 1 },
+		{"UbuntuCN", "http://forum.ubuntu.org.cn/feed.php", 1 },
 		{"VeryCD", "http://lib.verycd.com/feeds/rss.xml", 1 },
-		{"CNbeta", "http://feeds.feedburner.com/cbrss", 1 },
+		{"CNbeta", "http://www.cnbeta.com/backend.php", 1 },
 		--{"OnJAVA", "http://www.oreillynet.com/pub/feed/7?format=rss2", 1 },
-		{"LinuxToy", "http://feeds.feedburner.com/linuxtoy", 1 },
+		{"LinuxToy", "http://feedproxy.google.com/linuxtoy", 1 },
 		{"Secrets", "http://feed.feedsky.com/secretmoumentei", 1 },
     }
   }
@@ -223,7 +224,7 @@ function show_menu()
         local desc = clean(d[2])
         local link = clean(d[3])
         table.insert(ret, menuentry(tostring(count)..". "..title,
-            "ioncore.popen_bgread('opera " .. link .. "')"))
+            "ioncore.popen_bgread('firefox " .. link .. "')"))
         count = count + 1
       end
       if count == 1 then

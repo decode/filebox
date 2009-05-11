@@ -94,3 +94,4 @@ dopath("bindsearch")
 --dopath("statusbar_act")
 
 dopath("statusd_mcpu")
+dopath("float-sb")

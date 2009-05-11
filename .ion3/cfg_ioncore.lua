@@ -149,13 +149,13 @@ defbindings("WMPlex.toplevel", {
 
     bdoc("Run a terminal emulator."),
     kpress(ALTMETA.."F2", "ioncore.exec_on(_, XTERM or 'xterm')"),
-    
+   
     bdoc("Query for command line to execute."),
     kpress(ALTMETA.."F3", "mod_query.query_exec(_)"),
-
+   ]]--
     bdoc("Query for Lua code to execute."),
-    kpress(META.."F3", "mod_query.query_lua(_)"),
-
+    kpress(META.."F4", "mod_query.query_lua(_)"),
+  --[[
     bdoc("Query for host to connect to with SSH."),
     kpress(ALTMETA.."F4", "mod_query.query_ssh(_, ':ssh')"),
 
@@ -381,6 +381,8 @@ defctxmenu("WFrame", "Frame", {
     menuentry("Attach tagged", "ioncore.tagged_attach(_)", { priority = 0 }),
     menuentry("Clear tags",    "ioncore.tagged_clear()", { priority = 0 }),
     menuentry("Window info",   "mod_query.show_tree(_, _sub)", { priority = 0 }),
+    menuentry("hidetab", "_:set_mode('tiled-alt')"),
+    menuentry("showtab", "_:set_mode('tiled')"),
 })
 
 

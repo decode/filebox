@@ -142,16 +142,18 @@ local defaults={
     -- except that I only replace %mocp_* keys.  Leave off the mocp_ part
     -- because we don't need that here.
     --user_defined_play = 'moc: %state "%title" (%currenttime / %totaltime)',
-    user_defined_play = '%songtitle - %artist(%currenttime/%totaltime)',
+    --user_defined_play = '%songtitle - %artist(%currenttime/%totaltime)',
+    user_defined_play = '[mocp play]',
 
     -- User defined template when moc is paused.
-    user_defined_pause = 'moc: %state "%songtitle" %bitrate %album'
-                         .. "[%currenttime | %totaltime]",
+    --user_defined_pause = 'moc: %state "%songtitle" %bitrate %album'
+    --                     .. "[%currenttime | %totaltime]",
+    user_defined_pause = '[mocp pause]',
 
     -- User defined template when moc is stopped.  Only the state key can be
     -- replaced in this string.
-    user_defined_stop = "moc: %state",
-
+    --user_defined_stop = "moc: %state",
+    user_defined_stop = '[mocp stop]',
     -- User defined template.  This is what is displayed if moc is turned off.
     -- Only the state key can be replaced.
     -- When moc isn't running, I prefer to not display anything.
