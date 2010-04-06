@@ -6,15 +6,15 @@
 (setq load-path (cons "~/.emacs.d/predictive" load-path))
 (setq load-path (cons "~/.emacs.d/emacs-rails" load-path))
 (setq load-path (cons "~/.emacs.d/ruby-mode" load-path))
-(setq load-path (cons "~/.emacs.d/yaml-mode-0.0.3" load-path))
+(setq load-path (cons "~/.emacs.d/cucumber.el" load-path))
 
+;;(require 'cucumber)
 (require 'color-theme)
 (require 'ecb-autoloads)
 (require 'cedet)
 (require 'haml-mode)
 (require 'sass-mode)
-
-(require 'psvn)
+(require 'ess-site)
 
 (require 'diminish)
    (diminish 'abbrev-mode "Abv")
@@ -134,6 +134,14 @@
 	 (setq  TeX-show-compilation  t) 
 )) 
 
+;; ----------------------------------------------------------
+;; markdown settings
+;; ----------------------------------------------------------
+(autoload 'markdown-mode "markdown-mode.el"
+    "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+    (cons '("\\.text" . markdown-mode) auto-mode-alist))
+
 ;;(load "desktop")
 ;;(desktop-save-mode)
 ;;(desktop-load-default)
@@ -143,7 +151,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(ecb-layout-window-sizes (quote (("left8" (0.21287128712871287 . 0.2542372881355932) (0.21287128712871287 . 0.23728813559322035) (0.21287128712871287 . 0.2542372881355932) (0.21287128712871287 . 0.23728813559322035))))))
+ '(ecb-layout-window-sizes (quote (("left8" (0.2698412698412698 . 0.2765957446808511) (0.2698412698412698 . 0.23404255319148937) (0.2698412698412698 . 0.2978723404255319) (0.2698412698412698 . 0.1702127659574468))))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
