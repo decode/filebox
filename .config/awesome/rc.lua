@@ -8,6 +8,8 @@ require("beautiful")
 require("naughty")
 
 require("scratch")
+require("vicious")
+require("awful.client")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -124,7 +126,11 @@ for s = 1, screen.count() do
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(function(c)
-                                              return awful.widget.tasklist.label.currenttags(c, s)
+      
+                                              --a,b,x = awful.client.idx(c)
+                                              b = awful.widget.tasklist.label.currenttags(c, s) 
+
+                                              return '[' .. s .. '] ' .. awful.widget.tasklist.label.currenttags(c, s) 
                                           end, mytasklist.buttons)
 
     -- Create the wibox
@@ -144,16 +150,60 @@ for s = 1, screen.count() do
 end
 -- }}}
 
+
+-- Initialize widget
+netwidget = widget({ type = "textbox" })
+vicious.register(netwidget, vicious.widgets.net, ' Eth:<span color="'
+  .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
+  .. 'blue' ..'">${eth0 up_kb}</span>', 5)
+wifiwidget = widget({ type = "textbox" })
+vicious.register(wifiwidget, vicious.widgets.net, 'Wifi:<span color="green">${wlan0 down_kb}</span>'
+  .. '/<span color="blue">${wlan0 up_kb}</span>', 3)
+  
+datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, "%R %b %d ", 60)
+
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, "_ CPU:$1% ")
+
+tzswidget = widget({ type = "textbox" })
+vicious.register(tzswidget, vicious.widgets.thermal, "$1C ", 30, "thermal_zone0")
+
+memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem, "_ MEM:$1%($2MB) ", 20)
+
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "_ VOL:$1% ", 2, "PCM")
+
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, "BATT:$1$2% ", 61, "BAT0")
+
+--weatherwidget = widget({ type = "textbox" })
+--vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
+
+tb_moc = widget({ type = "textbox" })
+
 statuswibox = {}
 -- {{{ Custom Statusbar
 for s = 1, screen.count() do
     statuswibox[s] = awful.wibox({ position = "top", screen = s })
     statuswibox[s].widgets = {
       {
-        mytextclock,
+        --mytextclock,
+        datewidget,
+        cpuwidget,
+        tzswidget,
+        memwidget,
+        volwidget,
+        --weatherwidget,
+        tb_moc,
         layout = awful.widget.layout.horizontal.leftright
       },
-      s == 1 and mysystray or nil
+      s == 1 and mysystray or nil,
+      netwidget,
+      wifiwidget,
+      batwidget,
+      layout = awful.widget.layout.horizontal.rightleft
     }
 end
 -- }}}
@@ -171,6 +221,13 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey }, "`", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
+
+    awful.key({ "Mod4" }, "m", function ()
+    -- If you want to always position the menu on the same place set coordinates
+      awful.menu.menu_keys.down = { "Down", "Alt_L" }
+      local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
+    end),
+
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -356,5 +413,30 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
---
---
+
+mytimer = timer({ timeout = 2 })
+mytimer:add_signal("timeout", function()
+   moc_info = io.popen("mocp -i"):read("*all")
+   moc_state = string.gsub(string.match(moc_info, "State: %a*"),"State: ","")
+   if moc_state == "PLAY" or moc_state == "PAUSE" then
+       moc_artist = string.gsub(string.match(moc_info, "Artist: %C*"), "Artist: ","")
+       moc_title = string.gsub(string.match(moc_info, "SongTitle: %C*"), "SongTitle: ","")
+       moc_curtime = string.gsub(string.match(moc_info, "CurrentTime: %d*:%d*"), "CurrentTime: ","")
+       moc_totaltime = string.gsub(string.match(moc_info, "TotalTime: %d*:%d*"), "TotalTime: ","")
+       if moc_artist == "" then 
+           moc_artist = "unknown artist" 
+       end
+       if moc_title == "" then 
+           moc_title = "unknown title" 
+       end
+       moc_string = "MOC: " .. moc_artist .. " - " .. moc_title .. "(" .. moc_curtime .. "/" .. moc_totaltime .. ")"
+       if moc_state == "PAUSE" then 
+           moc_string = " [[ " .. moc_string .. " ]]"
+       end
+   else
+       moc_string = " [ not playing ]"
+   end
+   tb_moc.text = moc_string
+end)
+--mytimer:start()
+
