@@ -126,11 +126,8 @@ for s = 1, screen.count() do
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(function(c)
-      
                                               --a,b,x = awful.client.idx(c)
-                                              b = awful.widget.tasklist.label.currenttags(c, s) 
-
-                                              return '[' .. s .. '] ' .. awful.widget.tasklist.label.currenttags(c, s) 
+                                              return awful.widget.tasklist.label.currenttags(c, s) 
                                           end, mytasklist.buttons)
 
     -- Create the wibox
@@ -155,10 +152,10 @@ end
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, ' Eth:<span color="'
   .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
-  .. 'blue' ..'">${eth0 up_kb}</span>', 5)
-wifiwidget = widget({ type = "textbox" })
-vicious.register(wifiwidget, vicious.widgets.net, 'Wifi:<span color="green">${wlan0 down_kb}</span>'
-  .. '/<span color="blue">${wlan0 up_kb}</span>', 3)
+  .. 'yellow' ..'">${eth0 up_kb}</span>', 5)
+--wifiwidget = widget({ type = "textbox" })
+--vicious.register(wifiwidget, vicious.widgets.net, 'Wifi:<span color="green">${wlan0 down_kb}</span>'
+--  .. '/<span color="blue">${wlan0 up_kb}</span>', 3)
   
 datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "%R %b %d ", 60)
@@ -201,7 +198,7 @@ for s = 1, screen.count() do
       },
       s == 1 and mysystray or nil,
       netwidget,
-      wifiwidget,
+      --wifiwidget,
       batwidget,
       layout = awful.widget.layout.horizontal.rightleft
     }
@@ -222,8 +219,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "`", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
 
-    awful.key({ "Mod4" }, "m", function ()
-    -- If you want to always position the menu on the same place set coordinates
+    awful.key({ "Mod1" }, "m", function ()
+      -- If you want to always position the menu on the same place set coordinates
+      io.popen("notify-send -t 2000 '[Alt + m]  Window List'")
       awful.menu.menu_keys.down = { "Down", "Alt_L" }
       local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
     end),
@@ -236,22 +234,38 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, ".",
         function ()
             awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
+            if client.focus 
+              then 
+                client.focus:raise() 
+                io.popen("notify-send -t 2000 '[win + .]  next client'")
+              end
         end),
     awful.key({ modkey,           }, "x",
         function ()
             awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
+            if client.focus 
+              then
+                client.focus:raise()
+                io.popen("notify-send -t 2000 '[win + x]  next client'")
+              end
         end),
     awful.key({ modkey,           }, ",",
         function ()
             awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
+            if client.focus 
+              then 
+                client.focus:raise() 
+                io.popen("notify-send -t 2000 '[win + ,]  prev client'")
+              end
         end),
     awful.key({ modkey,           }, "z",
         function ()
             awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
+            if client.focus
+              then
+                client.focus:raise() 
+                io.popen("notify-send -t 2000 '[win + z]  prev client'")
+              end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
@@ -297,17 +311,26 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey, "Shift"   }, "c",      
+        function (c) 
+          c:kill()                         
+          io.popen("notify-send -t 2000 '[win + shift + c]  kill client'")
+        end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
+    awful.key({ modkey,           }, "n",      
+        function (c)
+            c.minimized = not c.minimized    
+            io.popen("notify-send -t 2000 '[win + n]  minimized client'")
+        end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
+            io.popen("notify-send -t 2000 '[win + m]  maximized client'")
         end),
 
 
