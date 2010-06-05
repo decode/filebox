@@ -10,6 +10,7 @@ require("naughty")
 require("scratch")
 require("vicious")
 require("awful.client")
+require("revelation")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -218,10 +219,11 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey }, "`", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
+    awful.key({ modkey }, "e",  revelation.revelation),
 
     awful.key({ "Mod1" }, "m", function ()
       -- If you want to always position the menu on the same place set coordinates
-      io.popen("notify-send -t 2000 '[Alt + m]  Window List'")
+      io.popen("notify-send -t 2000 '[Alt + m]' 'show Window List'")
       awful.menu.menu_keys.down = { "Down", "Alt_L" }
       local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
     end),
@@ -237,7 +239,7 @@ globalkeys = awful.util.table.join(
             if client.focus 
               then 
                 client.focus:raise() 
-                io.popen("notify-send -t 2000 '[win + .]  next client'")
+                io.popen("notify-send -t 2000 '[win + .]' 'next client'")
               end
         end),
     awful.key({ modkey,           }, "x",
@@ -246,7 +248,7 @@ globalkeys = awful.util.table.join(
             if client.focus 
               then
                 client.focus:raise()
-                io.popen("notify-send -t 2000 '[win + x]  next client'")
+                io.popen("notify-send -t 2000 '[win + x]' 'next client'")
               end
         end),
     awful.key({ modkey,           }, ",",
@@ -255,7 +257,7 @@ globalkeys = awful.util.table.join(
             if client.focus 
               then 
                 client.focus:raise() 
-                io.popen("notify-send -t 2000 '[win + ,]  prev client'")
+                io.popen("notify-send -t 2000 '[win + ,]' 'prev client'")
               end
         end),
     awful.key({ modkey,           }, "z",
@@ -264,7 +266,7 @@ globalkeys = awful.util.table.join(
             if client.focus
               then
                 client.focus:raise() 
-                io.popen("notify-send -t 2000 '[win + z]  prev client'")
+                io.popen("notify-send -t 2000 '[win + z]' 'prev client'")
               end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
@@ -278,13 +280,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
+            io.popen("notify-send -t 2000 '[win + tab]' 'cycle client'")
             if client.focus then
                 client.focus:raise()
             end
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    --awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -310,27 +313,35 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      
+    awful.key({ modkey,           }, "Return",
+        function (c)
+          c.fullscreen = not c.fullscreen  
+          io.popen("notify-send -t 2000 '[win + return]' 'toggle client fullscreen'")
+        end),
+    awful.key({ modkey, }, "c",      
         function (c) 
           c:kill()                         
-          io.popen("notify-send -t 2000 '[win + shift + c]  kill client'")
+          io.popen("notify-send -t 2000 '[win + c]' 'kill client'")
         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ modkey,           }, "t",      
+        function (c) 
+          c.ontop = not c.ontop            
+          io.popen("notify-send -t 2000 '[win + t]' 'set client on top'")
+        end),
     awful.key({ modkey,           }, "n",      
         function (c)
             c.minimized = not c.minimized    
-            io.popen("notify-send -t 2000 '[win + n]  minimized client'")
+            io.popen("notify-send -t 2000 '[win + n]' 'minimized client'")
         end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-            io.popen("notify-send -t 2000 '[win + m]  maximized client'")
+            io.popen("notify-send -t 2000 '[win + m]' 'toggle maximized client'")
         end),
 
 
@@ -353,6 +364,7 @@ for i = 1, keynumber do
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
+                            io.popen("notify-send -t 2000 '[win + ".. i .."]' 'goto screen " .. i .. "'")
                         end
                   end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
@@ -366,12 +378,14 @@ for i = 1, keynumber do
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
+                          io.popen("notify-send -t 2000 '[win + shift + ".. i .."]' 'send client to screen " .. i .. "'")
                       end
                   end),
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
+                          io.popen("notify-send -t 2000 '[win + ctrl + shift + ".. i .."]' 'show client also in screen " .. i .. "'")
                       end
                   end))
 end
@@ -393,12 +407,15 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
+                     size_hints_honor = false,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { class = "Openetion" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
