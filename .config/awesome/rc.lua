@@ -136,8 +136,8 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
             mytaglist[s],
+            mylauncher,
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
@@ -150,31 +150,52 @@ end
 
 
 -- Initialize widget
+infoimage = widget({ type = "imagebox" })
+infoimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/down.png")
 netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, ' Eth:<span color="'
+vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
   .. 'yellow' ..'">${eth0 up_kb}</span>', 5)
 --wifiwidget = widget({ type = "textbox" })
 --vicious.register(wifiwidget, vicious.widgets.net, 'Wifi:<span color="green">${wlan0 down_kb}</span>'
 --  .. '/<span color="blue">${wlan0 up_kb}</span>', 3)
   
+timeimage = widget({ type = "imagebox" })
+timeimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/time.png")
 datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "%R %b %d ", 60)
 
-cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "_ CPU:$1% ")
 
+cpuimage = widget({ type = "imagebox" })
+cpuimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/cpu.png")
+--cpuimage.image = image("/home/home/.config/awesome/themes/icons/dzen/dzen_bitmaps/cpu.png")
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1% ")
+
+tempimage = widget({ type = "imagebox" })
+tempimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/temp.png")
 tzswidget = widget({ type = "textbox" })
 vicious.register(tzswidget, vicious.widgets.thermal, "$1C ", 30, "thermal_zone0")
 
+memimage = widget({ type = "imagebox" })
+memimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/mem.png")
 memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, "_ MEM:$1%($2MB) ", 20)
+vicious.register(memwidget, vicious.widgets.mem, "$1%($2MB) ", 20)
 
+loadimage = widget({ type = "imagebox" })
+loadimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/info.png")
+loadwidget = widget({ type = "textbox" })
+vicious.register(loadwidget, vicious.widgets.uptime, "$4 ")
+
+volimage = widget({ type = "imagebox" })
+volimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/vol.png")
 volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "_ VOL:$1% ", 2, "PCM")
+vicious.register(volwidget, vicious.widgets.volume, "$1% ", 2, "PCM")
 
+batimage = widget({ type = "imagebox" })
+batimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/bat.png")
 batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "BATT:$1$2% ", 61, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "$1$2% ", 61, "BAT0")
 
 --weatherwidget = widget({ type = "textbox" })
 --vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
@@ -188,10 +209,17 @@ for s = 1, screen.count() do
     statuswibox[s].widgets = {
       {
         --mytextclock,
+        timeimage,
         datewidget,
+        cpuimage,
         cpuwidget,
+        tempimage,
         tzswidget,
+        memimage,
         memwidget,
+        loadimage,
+        loadwidget,
+        volimage,
         volwidget,
         --weatherwidget,
         tb_moc,
@@ -199,8 +227,10 @@ for s = 1, screen.count() do
       },
       s == 1 and mysystray or nil,
       netwidget,
+      infoimage,
       --wifiwidget,
       batwidget,
+      batimage,
       layout = awful.widget.layout.horizontal.rightleft
     }
 end
@@ -217,7 +247,7 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey }, "`", function () scratch.pad.toggle() end),
+    awful.key({ modkey }, "space", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
     awful.key({ modkey }, "e",  revelation.revelation),
 
