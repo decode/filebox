@@ -33,6 +33,7 @@ layouts =
 {
     awful.layout.suit.max,
     awful.layout.suit.max,
+    awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.magnifier
 }
@@ -43,7 +44,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts)
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts)
 end
 -- }}}
 
