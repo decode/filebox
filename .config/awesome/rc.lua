@@ -157,9 +157,12 @@ netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
   .. 'yellow' ..'">${eth0 up_kb}</span>', 5)
---wifiwidget = widget({ type = "textbox" })
---vicious.register(wifiwidget, vicious.widgets.net, 'Wifi:<span color="green">${wlan0 down_kb}</span>'
---  .. '/<span color="blue">${wlan0 up_kb}</span>', 3)
+
+wifiimage = widget({ type = "imagebox" })
+wifiimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/wifi.png")
+wifiwidget = widget({ type = "textbox" })
+vicious.register(wifiwidget, vicious.widgets.net, '<span color="green">${wlan0 down_kb}</span>'
+  .. '/<span color="yellow">${wlan0 up_kb}</span>', 3)
   
 timeimage = widget({ type = "imagebox" })
 timeimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/time.png")
@@ -229,7 +232,8 @@ for s = 1, screen.count() do
       s == 1 and mysystray or nil,
       netwidget,
       infoimage,
-      --wifiwidget,
+      wifiwidget,
+      wifiimage,
       batwidget,
       batimage,
       layout = awful.widget.layout.horizontal.rightleft
