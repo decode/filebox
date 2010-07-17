@@ -14,7 +14,7 @@ require("revelation")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt" --"xterm"
@@ -260,7 +260,7 @@ globalkeys = awful.util.table.join(
       -- If you want to always position the menu on the same place set coordinates
       io.popen("notify-send -t 2000 'Alt + m' 'show Window List'")
       awful.menu.menu_keys.down = { "Down", "Alt_L" }
-      local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
+      local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=405, y=300} })
     end),
 
 
@@ -454,6 +454,8 @@ awful.rules.rules = {
     { rule = { class = "Openetion" },
       properties = { floating = true } },
     { rule = { class = "Tilda" },
+      properties = { floating = true } },
+    { rule = { class = "smplayer" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
