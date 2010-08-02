@@ -12,6 +12,11 @@ require("vicious")
 require("awful.client")
 require("revelation")
 
+-- Go to client by name using dmenu
+require("aweswt")
+require("aweror")
+globalkeys = awful.util.table.join(globalkeys, aweror.genkeys(modkey))
+      
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
@@ -139,7 +144,6 @@ for s = 1, screen.count() do
         {
             mytaglist[s],
             mylauncher,
-            mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
@@ -201,6 +205,11 @@ batimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/bat.png")
 batwidget = widget({ type = "textbox" })
 vicious.register(batwidget, vicious.widgets.bat, "$1$2% ", 61, "BAT0")
 
+musicimage = widget({ type = "imagebox" })
+musicimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/music.png")
+mpdwidget = widget({ type = "textbox", name = "mympdwidget" })
+vicious.register(mpdwidget, vicious.widgets.mpd, "${Artist} - ${Title} [${state}] ", 5)
+
 --weatherwidget = widget({ type = "textbox" })
 --vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
 
@@ -225,8 +234,11 @@ for s = 1, screen.count() do
         loadwidget,
         volimage,
         volwidget,
+        musicimage,
+        mpdwidget,
         --weatherwidget,
         tb_moc,
+        mypromptbox[s],
         layout = awful.widget.layout.horizontal.leftright
       },
       s == 1 and mysystray or nil,
@@ -252,9 +264,20 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({ modkey }, "g", aweswt.switch),
     awful.key({ modkey }, "space", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
     awful.key({ modkey }, "e",  revelation.revelation),
+
+    awful.key({ modkey }, "s", function ()
+        awful.prompt.run({ prompt = "<span color='green' background='black'> Web search: </span>" }, mypromptbox[mouse.screen].widget,
+            function (command)
+                awful.util.spawn("firefox 'http://yubnub.org/parser/parse?command="..command.."'", false)
+                --awful.util.spawn("firefox 'http://www.google.de/search?hl=de&source=hp&q="..command.."&btnG=Google-Suche'", false)
+                -- Switch to the web tag, where Firefox is, in this case tag 3
+                --if tags[mouse.screen][3] then awful.tag.viewonly(tags[mouse.screen][3]) end
+            end)
+    end),
 
     awful.key({ "Mod1" }, "m", function ()
       -- If you want to always position the menu on the same place set coordinates
@@ -336,7 +359,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    --awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "F4",
               function ()
