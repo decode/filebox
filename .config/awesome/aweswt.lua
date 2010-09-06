@@ -15,8 +15,8 @@ function get_out (a)
    end
    return t
 end
-function get_input (a)
- s1='echo -e "'..a..'"|dmenu -i -b -nb black -nf white -p "Goto: "'
+function get_input (a, len)
+ s1='echo -e "'..a..'"|dmenu -l '..len..' -fa "Lihei Pro-10" -nb "#0a0a0a" -nf "#a0a0a0" -sb "#285577" -sf "#ffffff" -i -b -p "Goto: "'
  return get_out(s1)
 end
 
@@ -30,7 +30,7 @@ function switch()
   local tmp
   for i, c in pairs(clients) do
    if USE_T then do
-     tmp=i..':'..string.sub(c['name'], 1, 20)
+     tmp=i..':'..string.sub(c['name'], 1, 100)
    end
    else do
      tmp=i..':'..c['instance']..'.'..c['class']
@@ -39,7 +39,7 @@ function switch()
      m1=m1..tmp..'\n'
      t2[tmp]=c
   end
-  local t6=t2[get_input(m1)[1]]
+  local t6=t2[get_input(m1, table.getn(clients)+1)[1]]
   if t6 then
      local ctags = t6:tags()
      awful.tag.viewonly(ctags[1])

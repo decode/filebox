@@ -19,7 +19,8 @@ globalkeys = awful.util.table.join(globalkeys, aweror.genkeys(modkey))
       
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+--beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init("/home/home/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt" --"xterm"
@@ -56,6 +57,7 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
+   --{ "hide titlebar", function() mpdwidget.visible = false end},
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
    { "restart", awesome.restart },
@@ -79,6 +81,108 @@ mytextclock = awful.widget.textclock({ align = "right" })
 mysystray = widget({ type = "systray" })
 
 -- Create a wibox for each screen and add it
+
+tasks = widget({ type = "textbox" } )
+--tasks = textbox({ width = 200, align = "left" })
+
+-- Initialize widget
+infoimage = widget({ type = "imagebox" })
+infoimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/down.png")
+netwidget = widget({ type = "textbox" })
+vicious.register(netwidget, vicious.widgets.net, '<span color="'
+  .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
+  .. 'yellow' ..'">${eth0 up_kb}</span>', 5)
+
+wifiimage = widget({ type = "imagebox" })
+wifiimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/wifi.png")
+wifiwidget = widget({ type = "textbox" })
+vicious.register(wifiwidget, vicious.widgets.net, '<span color="green">${wlan0 down_kb}</span>'
+  .. '/<span color="yellow">${wlan0 up_kb}</span>', 3)
+  
+timeimage = widget({ type = "imagebox" })
+timeimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/time.png")
+datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, '<span color="white">%R</span> %b %d, %a(%U) ', 60)
+
+
+cpuimage = widget({ type = "imagebox" })
+cpuimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/cpu.png")
+--cpuimage.image = image("/home/home/.config/awesome/themes/icons/dzen/dzen_bitmaps/cpu.png")
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1% ")
+
+tempimage = widget({ type = "imagebox" })
+tempimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/temp.png")
+tzswidget = widget({ type = "textbox" })
+vicious.register(tzswidget, vicious.widgets.thermal, "$1C ", 30, "thermal_zone0")
+
+memimage = widget({ type = "imagebox" })
+memimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/mem.png")
+memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem, "$1%($2MB) ", 20)
+
+loadimage = widget({ type = "imagebox" })
+loadimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/info.png")
+loadwidget = widget({ type = "textbox" })
+vicious.register(loadwidget, vicious.widgets.uptime, "$4 ($1:$2:$3) ")
+
+volimage = widget({ type = "imagebox" })
+volimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/vol.png")
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "$1%[$2]", 2, "Master")
+
+batimage = widget({ type = "imagebox" })
+batimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/bat.png")
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, "$1$2% ", 61, "BAT0")
+
+musicimage = widget({ type = "imagebox" })
+musicimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/music.png")
+mpdwidget = widget({ type = "textbox", name = "mympdwidget" })
+vicious.register(mpdwidget, vicious.widgets.mpd, "${Artist} - ${Title} [${state}] ", 5)
+
+--weatherwidget = widget({ type = "textbox" })
+--vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
+
+
+function show_tasks(cli)
+  USE_T=true
+  local clients = client.get()
+  if table.getn(clients) == 0 then 
+    return
+  end
+  local m1=''
+  local t2={}
+  local tmp
+  for i, c in pairs(clients) do
+    if USE_T then do
+      if c['window']==cli['window'] then do
+        tmp='<span color=\'#ffffee\'>- '..i..':'..string.sub(c['class'], 1, 12)..' -</span>'
+        if c['instance']=="Navigator" then 
+          tmp='<span color=\'#ffffee\'>- '..i..':Firefox -</span>'
+        end
+      end
+      else do
+        tmp='<span color=\'#aabbcc\'>'..i..':'..string.sub(c['class'], 1, 12)..'</span>'
+        if c['instance']=="Navigator" then 
+          tmp='<span color=\'#aabbcc\'>'..i..':Firefox</span>'
+        end
+      end
+      end
+    end
+    else do
+      tmp=i..':'..c['instance']..'.'..c['class']
+    end
+    end
+    m1=m1..tmp..'  '
+    --t2[tmp]=c
+  end
+  tasks.text = m1
+  tasks.width = 1024 
+  tasks.align = "center"
+  tasks.bg = "black"
+end
+
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
@@ -134,6 +238,7 @@ for s = 1, screen.count() do
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(function(c)
                                               --a,b,x = awful.client.idx(c)
+                                              --return awful.widget.tasklist.label.focused(c, s) 
                                               return awful.widget.tasklist.label.currenttags(c, s) 
                                           end, mytasklist.buttons)
 
@@ -144,74 +249,19 @@ for s = 1, screen.count() do
         {
             mytaglist[s],
             mylauncher,
+            mypromptbox[s],
+            --tasks,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
+        mpdwidget,
+        musicimage,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
+    mywibox[s].height = 14
 end
 -- }}}
-
-
--- Initialize widget
-infoimage = widget({ type = "imagebox" })
-infoimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/down.png")
-netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. 'green' ..'">${eth0 down_kb}</span>/<span color="'
-  .. 'yellow' ..'">${eth0 up_kb}</span>', 5)
-
-wifiimage = widget({ type = "imagebox" })
-wifiimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/wifi.png")
-wifiwidget = widget({ type = "textbox" })
-vicious.register(wifiwidget, vicious.widgets.net, '<span color="green">${wlan0 down_kb}</span>'
-  .. '/<span color="yellow">${wlan0 up_kb}</span>', 3)
-  
-timeimage = widget({ type = "imagebox" })
-timeimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/time.png")
-datewidget = widget({ type = "textbox" })
-vicious.register(datewidget, vicious.widgets.date, "%R %b.%d %a(%U) ", 60)
-
-
-cpuimage = widget({ type = "imagebox" })
-cpuimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/cpu.png")
---cpuimage.image = image("/home/home/.config/awesome/themes/icons/dzen/dzen_bitmaps/cpu.png")
-cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "$1% ")
-
-tempimage = widget({ type = "imagebox" })
-tempimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/temp.png")
-tzswidget = widget({ type = "textbox" })
-vicious.register(tzswidget, vicious.widgets.thermal, "$1C ", 30, "thermal_zone0")
-
-memimage = widget({ type = "imagebox" })
-memimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/mem.png")
-memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, "$1%($2MB) ", 20)
-
-loadimage = widget({ type = "imagebox" })
-loadimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/info.png")
-loadwidget = widget({ type = "textbox" })
-vicious.register(loadwidget, vicious.widgets.uptime, "$4 ")
-
-volimage = widget({ type = "imagebox" })
-volimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/vol.png")
-volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "$1% ", 2, "PCM")
-
-batimage = widget({ type = "imagebox" })
-batimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/bat.png")
-batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "$1$2% ", 61, "BAT0")
-
-musicimage = widget({ type = "imagebox" })
-musicimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/music.png")
-mpdwidget = widget({ type = "textbox", name = "mympdwidget" })
-vicious.register(mpdwidget, vicious.widgets.mpd, "${Artist} - ${Title} [${state}] ", 5)
-
---weatherwidget = widget({ type = "textbox" })
---vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
 
 tb_moc = widget({ type = "textbox" })
 
@@ -222,6 +272,7 @@ for s = 1, screen.count() do
     statuswibox[s].widgets = {
       {
         --mytextclock,
+        --mytaglist[s],
         timeimage,
         datewidget,
         cpuimage,
@@ -234,11 +285,11 @@ for s = 1, screen.count() do
         loadwidget,
         volimage,
         volwidget,
-        musicimage,
-        mpdwidget,
+        --musicimage,
+        --mpdwidget,
         --weatherwidget,
-        tb_moc,
-        mypromptbox[s],
+        --tb_moc,
+        --mypromptbox[s],
         layout = awful.widget.layout.horizontal.leftright
       },
       s == 1 and mysystray or nil,
@@ -254,6 +305,26 @@ end
 -- }}}
 
 
+taskwibox = {}
+-- {{{ Custom Statusbar
+for s = 1, screen.count() do
+    taskwibox[s] = awful.wibox({ position = "bottom", screen = s })
+    taskwibox[s].widgets = {
+          --mytasklist[s],
+          tasks,
+          layout = awful.widget.layout.horizontal.leftright
+    }
+    taskwibox[s].height = 16
+    taskwibox[s].opacity = 0.4
+    --taskwibox[s].x = 300
+    --taskwibox[s].y = 735 
+    taskwibox[s].y = 736
+    taskwibox[s].bg = "gray"
+    taskwibox[s].ontop = true
+end
+
+-- {{{ Custom Statusbar
+
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -264,10 +335,30 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey }, "g", aweswt.switch),
+    awful.key({ modkey }, "k", aweswt.switch),
     awful.key({ modkey }, "space", function () scratch.pad.toggle() end),
     awful.key({ modkey }, "/", function () scratch.drop("urxvt", "bottom", "center", 1, 0.3, true) end),
     awful.key({ modkey }, "e",  revelation.revelation),
+    awful.key({ modkey }, "o",  function() 
+      if tasks.visible==true then
+        tasks.visible = false
+        for s = 1, screen.count() do
+          taskwibox[s].visible = false 
+        end
+      else
+        for s = 1, screen.count() do
+          taskwibox[s].visible = true 
+          taskwibox[s].y = 736
+          --taskwibox[s].y = 670
+        end
+        tasks.visible = true 
+      end
+    end),
+
+    awful.key({ modkey }, "y",  function() 
+      mpdwidget.visible = not mpdwidget.visible
+      musicimage.visible = not musicimage.visible
+    end),
 
     awful.key({ modkey }, "s", function ()
         awful.prompt.run({ prompt = "<span color='green' background='black'> Web search: </span>" }, mypromptbox[mouse.screen].widget,
@@ -491,6 +582,7 @@ awful.rules.rules = {
 client.add_signal("manage", function (c, startup)
     -- Add a titlebar
     -- awful.titlebar.add(c, { modkey = modkey })
+    show_tasks(c)
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)
@@ -513,8 +605,22 @@ client.add_signal("manage", function (c, startup)
     end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.add_signal("focus", function(c) 
+  c.border_color = beautiful.border_focus 
+  show_tasks(c)
+end)
+client.add_signal("unfocus", function(c)
+  c.border_color = beautiful.border_normal
+  show_tasks(c)
+end)
+
+client.add_signal("list", function()
+  for s = 1, screen.count() do
+    c = awful.client.focus.history.get(1,0)
+  end
+  show_tasks(c)
+end)
+
 -- }}}
 
 mytimer = timer({ timeout = 2 })
