@@ -8,7 +8,10 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
+--theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
+--theme.wallpaper_cmd = { "awsetbg /home/home/desktop/new/wallpaper-467383.jpg" }
+theme.wallpaper_cmd = { "awsetbg /home/home/desktop/wallpaper-99621.jpg" }
+--theme.wallpaper_cmd = { "awsetbg /home/home/desktop/cover_1920x1200.jpg" }
 -- }}}
 
 -- {{{ Styles

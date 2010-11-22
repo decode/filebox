@@ -141,8 +141,13 @@ musicimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/music.pn
 mpdwidget = widget({ type = "textbox", name = "mympdwidget" })
 vicious.register(mpdwidget, vicious.widgets.mpd, "${Artist} - ${Title} [${state}] ", 5)
 
---weatherwidget = widget({ type = "textbox" })
---vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}", 10, "ZLSN")
+weatherimage = widget({ type = "imagebox" })
+weatherimage.image = image("/home/home/.config/awesome/themes/icons/anrxc/sun.png")
+weatherwidget = widget({ type = "textbox" })
+-- http://weather.noaa.gov/cgi-bin/nsd_country_lookup.pl
+-- GuiLin "ZGKL" 57957
+-- Xi'An "ZLXY" 
+vicious.register(weatherwidget, vicious.widgets.weather, "${weather} ${tempc}C ${humid}% ${press}pa ${windkmh}kmh ", 10, "ZLXY")
 
 
 function show_tasks(cli)
@@ -178,7 +183,7 @@ function show_tasks(cli)
     --t2[tmp]=c
   end
   tasks.text = m1
-  tasks.width = 1024 
+  tasks.width = 1660 
   tasks.align = "center"
   tasks.bg = "black"
 end
@@ -287,7 +292,6 @@ for s = 1, screen.count() do
         volwidget,
         --musicimage,
         --mpdwidget,
-        --weatherwidget,
         --tb_moc,
         --mypromptbox[s],
         layout = awful.widget.layout.horizontal.leftright
@@ -295,10 +299,12 @@ for s = 1, screen.count() do
       s == 1 and mysystray or nil,
       netwidget,
       infoimage,
-      wifiwidget,
-      wifiimage,
+      --wifiwidget,
+      --wifiimage,
       batwidget,
       batimage,
+      weatherwidget,
+      weatherimage,
       layout = awful.widget.layout.horizontal.rightleft
     }
 end
@@ -318,7 +324,7 @@ for s = 1, screen.count() do
     taskwibox[s].opacity = 0.4
     --taskwibox[s].x = 300
     --taskwibox[s].y = 735 
-    taskwibox[s].y = 736
+    taskwibox[s].y = 870
     taskwibox[s].bg = "gray"
     taskwibox[s].ontop = true
 end
@@ -348,7 +354,7 @@ globalkeys = awful.util.table.join(
       else
         for s = 1, screen.count() do
           taskwibox[s].visible = true 
-          taskwibox[s].y = 736
+          taskwibox[s].y = 870
           --taskwibox[s].y = 670
         end
         tasks.visible = true 
