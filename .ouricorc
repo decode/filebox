@@ -1,0 +1,29 @@
+Ourico*selected.border: #676365
+!Ourico*selected.fg: #d3d7cf
+Ourico*selected.fg: yellow
+Ourico*selected.bg: #1A1A1A
+Ourico*normal.border: #555753
+Ourico*normal.bg: #1A1A1A
+Ourico*normal.fg: #696969
+
+Ourico*deskname.bg: #2e3436
+Ourico*deskname.fg: #dd3d7cf
+Ourico*deskname.border: #555753
+
+Ourico*font:droid sans mono:pixelsize=13
+!Ourico*font:envy code r:medium:pixelsize=13
+
+Ourico*height: 16
+Ourico*x: 0
+Ourico*width: 190
+Ourico*borderpx: 0
+
+Ourico*showdesktop: 0
+Ourico*showtagbar: 1
+Ourico*focusonly: 1
+Ourico*bottom: 0
+Ourico*button: 0
+Ourico*raise: 1
+Ourico*tblines: 0
+Ourico*showclock: 0
+
