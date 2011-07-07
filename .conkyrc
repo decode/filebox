@@ -20,9 +20,9 @@ draw_graph_borders no
 default_color d9d7d6
 default_shade_color 000000
 default_outline_color d9d7d6
-alignment top_right
+alignment bottom
 gap_x 0
-gap_y 880 
+gap_y -380 
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -31,5 +31,5 @@ override_utf8_locale no
 #  Output
 ##############################################
 TEXT
-${color green}Net:${color}${upspeed eth0}/${downspeed eth0} _ ${color green}CPU:${color}(${cpu cpu1}%)(${cpu cpu2}%) _ ${color green}RAM:${color}${mem} _ ${color green}Load:${color}${loadavg 1}  ${color yellow}${exec wmctrl -d | grep '*' | awk '{printf " [ %s-%s ]", $1,$10}'}
+${color white}${exec date +'%R'} ${color yellow}${exec wmctrl -d | grep '*' | awk '{printf " [ %s-%s ]", $1,$10}'}  ${color green}CPU:${color}(${cpu cpu1}%)(${cpu cpu2}%) _ ${color green}RAM:${color}${mem} _ ${color green}Load:${color}${loadavg 1} _ ${color green}Net:${color}${upspeed eth0}/${downspeed eth0}
 #${exec wmctrl -d |awk '{printf " %s ",$2$10}'} 
