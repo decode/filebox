@@ -1,6 +1,8 @@
 Echinus*selected.border: #262626
 Echinus*selected.button: #d3d7cf
-Echinus*selected.bg: #262626
+#Echinus*selected.bg: #262626
+#Echinus*selected.bg: #4775A7
+Echinus*selected.bg: #003366
 Echinus*selected.fg: #d3d7cf
 
 Echinus*normal.border: #262626
@@ -8,21 +10,21 @@ Echinus*normal.button: #262626
 Echinus*normal.bg: #262626
 Echinus*normal.fg: #b0b4ac
 
-Echinus*border: 1
+Echinus*border: 0
 
 Echinus*button.iconify.pixmap: iconify.xbm
 Echinus*button.maximize.pixmap: max.xbm
 Echinus*button.close.pixmap: close.xbm
 
-Echinus*sloppy: 3
+Echinus*sloppy: 1
 Echinus*opacity: 0.8
 Echinus*decoratetiled: 0
+Echinus*titlelayout: T|N  IMC
 Echinus*hidebastards: 1
 Echinus*mwfact: 0.6
 Echinus*nmaster: 1
 
-
-Echinus*font: fixed-9
+Echinus*font: Droid Sans Fallback-10
 Echinus*modkey: W
 
 Echinus*deflayout: m
@@ -84,7 +86,8 @@ Echinus*toggleview3: CA + 1
 Echinus*toggleview4: CA + 1
 Echinus*toggleview5: CA + 1
 
-Echinus*focusview6: W + s
+Echinus*focusview4: W + space
+Echinus*focusview5: WS + space
 
 Echinus*setlayoutm: WS + m
 Echinus*setlayoutf: WS + f
@@ -100,8 +103,6 @@ Echinus*resizedecx: AS + a = 0 0 -5 0
 Echinus*resizedecy: AS + s = 0 0 0 -5
 Echinus*resizeincx: AS + d = 0 0 5 0
 Echinus*resizeincy: AS + w = 0 0 0 5
-
-Echinus*spawn0: A + t = xterm
 
 Echinus*decmwfact: W + h = -0.05
 Echinus*incmwfact: W + l = +0.05
@@ -119,6 +120,9 @@ Echinus*rule5: Namoroka.* web 0 1
 Echinus*rule6: Pidgin.* talk 1 1
 Echinus*rule7: Openfetion.* talk 1 1
 Echinus*rule8: SMPlayer.* NULL 1 0
+Echinus*rule9: urxvt.scratchpad NULL 1 0
+Echinus*rule10: ppstream.* NULL 1 0
+Echinus*rule11: MPlayer.* NULL 1 1
 
-Echinus*spawnr0: AS + p = urxvtc -title scratchpad -geometry 64x10+480+34 
-
+Echinus*spawn0: AS + p = urxvt -title scratchpad -geometry 64x10+480+34 
+Echinus*spawn1: AS + o = urxvt -title scratchpad -geometry 100x20+300+34 
