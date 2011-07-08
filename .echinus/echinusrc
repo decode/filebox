@@ -3,7 +3,8 @@ Echinus*selected.button: #d3d7cf
 #Echinus*selected.bg: #262626
 #Echinus*selected.bg: #4775A7
 Echinus*selected.bg: #003366
-Echinus*selected.fg: #d3d7cf
+#Echinus*selected.fg: #d3d7cf
+Echinus*selected.fg: white
 
 Echinus*normal.border: #262626
 Echinus*normal.button: #262626
@@ -21,7 +22,7 @@ Echinus*opacity: 0.8
 Echinus*decoratetiled: 0
 Echinus*titlelayout: T|N  IMC
 Echinus*hidebastards: 1
-Echinus*mwfact: 0.6
+Echinus*mwfact: 0.7
 Echinus*nmaster: 1
 
 Echinus*font: Droid Sans Fallback-10
@@ -47,8 +48,8 @@ Echinus*tags.layout6: f
 
 Echinus*togglestruts: AS + b
 Echinus*togglemonitor: A + grave
-Echinus*focusnext: W + comma
-Echinus*focusprev: W + period
+Echinus*focusnext: A + comma
+Echinus*focusprev: A + period
 Echinus*viewprevtag: A + Tab
 Echinus*viewlefttag: AS + Left
 Echinus*viewrighttag: AS + Right
@@ -92,8 +93,8 @@ Echinus*focusview5: WS + space
 Echinus*setlayoutm: WS + m
 Echinus*setlayoutf: WS + f
 Echinus*setlayouti: WS + i
-Echinus*setlayoutt: WS + r
-Echinus*setlayoutb: WS + w
+Echinus*setlayoutt: WS + t
+Echinus*setlayoutb: WS + b
 
 Echinus*moveright: W + d = 5
 Echinus*moveleft: W + a = -5
@@ -115,6 +116,7 @@ Echinus*rule0: Mplayer.* NULL 1 1
 Echinus*rule1: Gimp.* gfx 1 1
 Echinus*rule2: Tilda.* NULL 1 1
 Echinus*rule3: Firefox.* web 0 1
+Echinus*rule3: chromium.* web 0 1
 Echinus*rule4: Vimperator.* web 0 1
 Echinus*rule5: Namoroka.* web 0 1
 Echinus*rule6: Pidgin.* talk 1 1

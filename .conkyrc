@@ -1,6 +1,6 @@
 background yes
 use_xft yes
-xftfont Bitstream Sans Vera:size=10
+xftfont Bitstream Sans Vera:size=9
 xftalpha 1
 update_interval 2.0
 total_run_times 0
@@ -22,7 +22,7 @@ default_shade_color 000000
 default_outline_color d9d7d6
 alignment bottom
 gap_x 0
-gap_y -380 
+gap_y -385 
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -31,5 +31,5 @@ override_utf8_locale no
 #  Output
 ##############################################
 TEXT
-${color white}${exec date +'%R'} ${color yellow}${exec wmctrl -d | grep '*' | awk '{printf " [ %s-%s ]", $1,$10}'}  ${color green}CPU:${color}(${cpu cpu1}%)(${cpu cpu2}%) _ ${color green}RAM:${color}${mem} _ ${color green}Load:${color}${loadavg 1} _ ${color green}Net:${color}${upspeed eth0}/${downspeed eth0}
+${color white}${exec date +'%R'} ${color yellow}${exec wmctrl -d | grep '*' | awk '{printf " [%s-%s]", $1+1,$10}'}  ${color green}CPU:${color}(${cpu cpu1}%)(${cpu cpu2}%) _ ${color green}RAM:${color}${mem} _ ${color green}Load:${color}${loadavg 1} _ ${color green}Net:${color}${upspeed eth0}/${downspeed eth0}
 #${exec wmctrl -d |awk '{printf " %s ",$2$10}'} 
