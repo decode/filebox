@@ -1,9 +1,9 @@
 " pathogen.vim: Manage your 'runtimepath' with ease
 source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 source ~/.vim/bundle/fuzzyfinder_textmate/fuzzyfinder_textmate.vim
+call pathogen#infect()
 
 colorscheme lettuce
-call pathogen#infect()
 set fileencodings=ucs-bom,utf8,GB18030,Big5,latin1
 set nocompatible
 set number
@@ -70,3 +70,8 @@ let g:fuzzy_matching_limit = 60
 map <leader>t :FuzzyFinderTextMate<cr>
 "Search in Opened Buffers
 map <leader>b :FuzzyFinderBuffer<CR> 
+
+" Buftab
+:let g:buftabs_in_statusline=1
+:let g:buftabs_only_basename=1
+:let g:buftabs_sorted_number=1

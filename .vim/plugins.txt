@@ -50,7 +50,10 @@ vim-buffergator: buffer view plugin
 url =  https://github.com/jeetsukumaran/vim-buffergator.git
 
 buftabs: Minimalistic buffer tabs saving screen space. display buffer name at bottom status line
-url = https://github.com/vim-scripts/buftabs.git
+url = https://github.com/decode/buftabs.git
 
 bufpos: switch buffer with Alt-<number>
 url = https://github.com/vim-scripts/bufpos.git
+
+bufexplorer: buffer view plugin
+url = https://github.com/vim-scripts/bufexplorer.zip.git

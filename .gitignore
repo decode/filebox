@@ -1,2 +1,2 @@
-.vim/backups
-.vim/tmp
+.vim/backups/*
+.vim/tmp/*

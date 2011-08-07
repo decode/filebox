@@ -49,9 +49,12 @@
 [submodule ".vim/bundle/vim-buffergator"]
 	path = .vim/bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
-[submodule ".vim/bundle/buftabs"]
-	path = .vim/bundle/buftabs
-	url = https://github.com/vim-scripts/buftabs.git
 [submodule ".vim/bundle/bufpos"]
 	path = .vim/bundle/bufpos
 	url = https://github.com/vim-scripts/bufpos.git
+[submodule ".vim/bundle/bufexplorer"]
+	path = .vim/bundle/bufexplorer
+	url = https://github.com/vim-scripts/bufexplorer.zip.git
+[submodule ".vim/bundle/buftabs"]
+	path = .vim/bundle/buftabs
+	url = https://github.com/decode/buftabs.git
