@@ -1,29 +1,30 @@
+" pathogen.vim: Manage your 'runtimepath' with ease
+source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+source ~/.vim/bundle/fuzzyfinder_textmate/fuzzyfinder_textmate.vim
+
 colorscheme lettuce
+call pathogen#infect()
 set fileencodings=ucs-bom,utf8,GB18030,Big5,latin1
 set nocompatible
 set number
 set background=dark
 set encoding=utf-8
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
-syntax on
-filetype plugin indent on
 set guioptions-=T
 set guioptions-=r
 set guioptions-=l
+syntax on
+filetype plugin indent on
 
 " Map shortcut key
 let mapleader=","
 let g:mapleader=","
-
-" Toggle NERNTree
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 set cf  " Enable error files & error jumping.
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set history=256  " Number of things to remember in history.
 set autowrite  " Writes on make/shell commands
 set ruler  " Ruler on
-set nu  " Line numbers on
 set nowrap  " Line wrapping off
 set timeoutlen=250  " Time to wait after ESC (default causes an annoying delay)
  
@@ -60,3 +61,12 @@ set backup                     " Enable creation of backup file.
 set backupdir=~/.vim/backups " Where backups will go.
 set directory=~/.vim/tmp     " Where temporary files will go.
 
+" Toggle NERNTree
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+
+" FuzzyFinderTextMate
+let g:fuzzy_ignore = "*.log"
+let g:fuzzy_matching_limit = 60
+map <leader>t :FuzzyFinderTextMate<cr>
+"Search in Opened Buffers
+map <leader>b :FuzzyFinderBuffer<CR> 

@@ -1,0 +1,56 @@
+vim-rails: a rails plugin
+url = git://github.com/tpope/vim-rails.git
+
+vim-fugitive: git plugin
+url = git://github.com/tpope/vim-fugitive.git
+
+vim-pathogen: set custom runpath for vim
+url = https://github.com/tpope/vim-pathogen.git
+
+nerdtree: a tree view file explorer plugin
+url = https://github.com/scrooloose/nerdtree.git
+
+nerdcommenter: a comment tools
+url = https://github.com/scrooloose/nerdcommenter.git
+
+supertab: press tab to complete words
+url = https://github.com/ervandew/supertab.git
+
+snipmate: textmate like plugin
+url = https://github.com/msanders/snipmate.vim.git
+
+l9: fuzzy finder depends plugin
+url = https://github.com/vim-scripts/L9.git
+
+fuzzyfinder: file find plugin
+url = https://github.com/vim-scripts/FuzzyFinder.git
+
+fuzzyfinder_textmate: extend fuzzyfinder
+url = https://github.com/jamis/fuzzyfinder_textmate.git
+
+vim-surround: change "hello" to 'hello' or etc
+url = https://github.com/tpope/vim-surround.git
+
+vim-autoclose: auto complete ( with ) or etc)
+url = https://github.com/Townk/vim-autoclose.git
+
+taglist: code view plugin
+url = https://github.com/vim-scripts/taglist.vim.git
+
+pyflakes: on the fly Python checking in Vim with PyFlakes
+url = https://github.com/kevinw/pyflakes-vim.git
+
+tagbar: Vim plugin that displays tags in a window, ordered by class etc
+url = https://github.com/majutsushi/tagbar.git
+
+tabular: Vim script for text filtering and alignment
+url = https://github.com/godlygeek/tabular.git
+
+vim-buffergator: buffer view plugin
+url =  https://github.com/jeetsukumaran/vim-buffergator.git
+
+buftabs: Minimalistic buffer tabs saving screen space. display buffer name at bottom status line
+url = https://github.com/vim-scripts/buftabs.git
+
+bufpos: switch buffer with Alt-<number>
+url = https://github.com/vim-scripts/bufpos.git
