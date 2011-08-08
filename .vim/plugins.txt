@@ -25,9 +25,6 @@ url = https://github.com/vim-scripts/L9.git
 fuzzyfinder: file find plugin
 url = https://github.com/vim-scripts/FuzzyFinder.git
 
-fuzzyfinder_textmate: extend fuzzyfinder
-url = https://github.com/jamis/fuzzyfinder_textmate.git
-
 vim-surround: change "hello" to 'hello' or etc
 url = https://github.com/tpope/vim-surround.git
 
@@ -57,3 +54,10 @@ url = https://github.com/vim-scripts/bufpos.git
 
 bufexplorer: buffer view plugin
 url = https://github.com/vim-scripts/bufexplorer.zip.git
+
+Command-T: The Command-T plug-in for VIM provides an extremely fast, intuitive mechanism for opening files with a minimal number of keystrokes. It's named "Command-T" because it is inspired by the "Go to File" window bound to Command-T in TextMate.
+The C extension must then be built:
+  cd path/ruby/command-t/
+  ruby extconf.rb
+  make
+url = https://github.com/wincent/Command-T.git

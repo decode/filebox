@@ -1,6 +1,5 @@
 " pathogen.vim: Manage your 'runtimepath' with ease
 source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
-source ~/.vim/bundle/fuzzyfinder_textmate/fuzzyfinder_textmate.vim
 call pathogen#infect()
 
 colorscheme lettuce
@@ -63,13 +62,6 @@ set directory=~/.vim/tmp     " Where temporary files will go.
 
 " Toggle NERNTree
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
-" FuzzyFinderTextMate
-let g:fuzzy_ignore = "*.log"
-let g:fuzzy_matching_limit = 60
-map <leader>t :FuzzyFinderTextMate<cr>
-"Search in Opened Buffers
-map <leader>b :FuzzyFinderBuffer<CR> 
 
 " Buftab
 :let g:buftabs_in_statusline=1
