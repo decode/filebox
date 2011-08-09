@@ -38,10 +38,13 @@ set formatoptions=tcqr
 set cindent
 set autoindent
 set smarttab
-set expandtab
+set expandtab " Turn tabs into spaces
+set wildmenu " Make the command-line completion better
  
 " Visual
 set showmatch  " Show matching brackets.
+set showcmd "show incomplete cmds down the bottom
+set showmode "show current mode down the bottom
 set mat=5  " Bracket blinking.
 set list
 " Show $ at end of line and trailing space as ~
