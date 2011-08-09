@@ -1,10 +1,43 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'decode/buftabs'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/supertab'
+Bundle 'msanders/snipmate.vim'
+Bundle 'Townk/vim-autoclose'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'godlygeek/tabular'
+Bundle 'jeetsukumaran/vim-buffergator'
+
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'taglist.vim'
+Bundle 'bufpos'
+Bundle 'bufexplorer.zip'
+
+Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
+
 " pathogen.vim: Manage your 'runtimepath' with ease
-source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+"source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+"call pathogen#infect()
 
 colorscheme lettuce
 set fileencodings=ucs-bom,utf8,GB18030,Big5,latin1
-set nocompatible
 set number
 set background=dark
 set encoding=utf-8
@@ -13,7 +46,6 @@ set guioptions-=T
 set guioptions-=r
 set guioptions-=l
 syntax on
-filetype plugin indent on
 
 " Map shortcut key
 let mapleader=","
