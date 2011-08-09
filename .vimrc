@@ -22,6 +22,8 @@ Bundle 'kevinw/pyflakes-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'sjl/gundo.vim'
+Bundle 'jcfaria/Vim-R-plugin'
 
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -59,6 +61,10 @@ set autowrite  " Writes on make/shell commands
 set ruler  " Ruler on
 set nowrap  " Line wrapping off
 set timeoutlen=250  " Time to wait after ESC (default causes an annoying delay)
+set wildmenu " Make the command-line completion better
+set ignorecase " Ignore case while searching
+set cursorline " Highlight current line
+set nohlsearch " Disable highlighting after search
  
 " Formatting (some of these are for coding in C and C++)
 set ts=2  " Tabs are 2 spaces
@@ -72,7 +78,6 @@ set cindent
 set autoindent
 set smarttab
 set expandtab " Turn tabs into spaces
-set wildmenu " Make the command-line completion better
  
 " Visual
 set showmatch  " Show matching brackets.
@@ -103,3 +108,5 @@ map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 :let g:buftabs_in_statusline=1
 :let g:buftabs_only_basename=1
 :let g:buftabs_sorted_number=1
+
+" vim: filetype=vim
