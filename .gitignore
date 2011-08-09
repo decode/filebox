@@ -1,2 +1,3 @@
 .vim/backups/*
 .vim/tmp/*
+.vim/bundle/*
