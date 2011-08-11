@@ -19,10 +19,10 @@ Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'msanders/snipmate.vim'
 Bundle 'Townk/vim-autoclose'
-Bundle 'kevinw/pyflakes-vim'
+"Bundle 'kevinw/pyflakes-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
-Bundle 'jeetsukumaran/vim-buffergator'
+"Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'sjl/gundo.vim'
 Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'vim-ruby/vim-ruby'
@@ -68,7 +68,7 @@ set ignorecase                                                 "  Ignore case wh
 set smartcase                                                  "  ignore case if search pattern is all lowercase,case-setnsitive otherwise
 set cursorline                                                 "  Highlight current line
 set nohlsearch                                                 "  Disable highlighting after search
-set autochdir
+"set autochdir
 
 
 "statusline setup
