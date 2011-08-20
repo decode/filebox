@@ -69,6 +69,7 @@ set smartcase                                                  "  ignore case if
 set cursorline                                                 "  Highlight current line
 set nohlsearch                                                 "  Disable highlighting after search
 "set autochdir
+set foldmethod=syntax
 
 
 "statusline setup
@@ -133,7 +134,7 @@ nmap <leader>P "+P
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 "Buftab
-:let g:buftabs_in_statusline=1
+":let g:buftabs_in_statusline=1
 :let g:buftabs_only_basename=1
 :let g:buftabs_sorted_number=1
 
