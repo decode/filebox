@@ -8,6 +8,7 @@ javascript <<EOF
             .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
+/*
 javascript <<EOF
 (function(){
     var zoteroPanel = document.createElement("statusbarpanel1");
@@ -18,6 +19,7 @@ javascript <<EOF
             .insertBefore(zoteroPanel, document.getElementById("security-button"));
 })();
 EOF
+*/
 js <<EOF
 ubiquity = function (str){ 
     var mgr = gUbiquity.__cmdManager;
@@ -35,4 +37,8 @@ EOF
 set nextpattern=\s*下一页|下一张|下页\s*,\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$
 set previouspattern=\s*上一页|上一张|上页\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$ 
 
+set tabnumbers 
 command zotero_save :js Zotero_Browser.scrapeThisPage()
+
+map <S-PageUp> :tabprev <CR>
+map <S-PageDown> :tabnext <CR>
