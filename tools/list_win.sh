@@ -4,4 +4,5 @@
 #  | xargs wmctrl -a
 LINE=`wmctrl -l | wc -l`  
 #wmctrl -l | cut -d' ' -f5- | dmenu -l $LINE -nb '#3f3f3f' -nf '#dcdccc' -sf '#3f3f3f' -sb '#dcdccc' -i | xargs wmctrl -a
-wmctrl -l | cut -d' ' -f5- | dmenu -l $LINE -fa "Lihei Pro-13" -nb '#0a0a0a' -nf '#a0a0a0' -sf '#fff' -sb '#285577' -i -p "Goto> " | xargs wmctrl -a
+wmctrl -l | cut -d' ' -f5- | dmenu -l $LINE -fn "Droid Sans Fallback-15" -nb '#0a0a0a' -nf '#a0a0a0' -sf '#fff' -sb '#285577' -i -p "Goto> " | xargs wmctrl -a
+#wmctrl -l | cut -d' ' -f5- | dmenu -l $LINE -nb '#0a0a0a' -nf '#a0a0a0' -sf '#fff' -sb '#285577' -i -p "Goto> " | xargs wmctrl -a
