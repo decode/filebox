@@ -163,4 +163,25 @@ set timeoutlen=150
 autocmd InsertLeave * call Fcitx2en()
 "autocmd InsertEnter * call Fcitx2zh()
 
+"R-vim custom key binding
+nmap <F2> <Plug>RStart
+imap <F2> <Plug>RStart
+vmap <F2> <Plug>RStart
+
+nmap <F5> <Plug>RSendFile
+imap <F5> <Plug>RSendFile
+vmap <F5> <Plug>RSendFile
+
+nmap <F6> <Plug>RSendParagraph
+imap <F6> <Plug>RSendParagraph
+vmap <F6> <Plug>RSendParagraph
+
+nmap <F7> <Plug>RSendLine
+imap <F7> <Plug>RSendLine
+vmap <F7> <Plug>RSendLine
+
+nmap <F8> <Plug>RSendSelection
+imap <F8> <Plug>RSendSelection
+vmap <F8> <Plug>RSendSelection
+
 "vim: filetype=vim
