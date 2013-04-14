@@ -127,4 +127,4 @@ Echinus*rule10: ppstream.* NULL 1 0
 Echinus*rule11: MPlayer.* NULL 1 1
 
 Echinus*spawn0: AS + p = urxvt -title scratchpad -geometry 64x10+480+34 
-Echinus*spawn1: AS + o = urxvt -title scratchpad -geometry 100x20+300+34 
+#Echinus*spawn1: AS + o = urxvt -title scratchpad -geometry 100x20+300+34 

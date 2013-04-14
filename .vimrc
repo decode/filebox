@@ -41,7 +41,10 @@ filetype plugin indent on                                      "  required!
 "source ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 "call pathogen#infect()
 
-colorscheme lettuce
+"colorscheme lettuce
+colorscheme zendnb
+hi CursorLine gui=none guibg=#111
+
 set fileencodings=ucs-bom,utf8,GB18030,Big5,latin1
 set number
 set background=dark
